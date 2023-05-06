@@ -4,8 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Resources\ApplicationsResource;
 use App\Models\Applications;
-use App\Models\Project;
-use App\Models\Skill;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Storage;
@@ -24,20 +22,13 @@ class ApplicationsController extends Controller
         return Inertia::render('applications/index', compact('applications'));
     }
 
-//    public function applications()
-//    {
-//
-//        return Inertia::render('Applications', compact('skills', 'projects'));
-//    }
     /**
-     * Show the form for creating a new resource.
-     *
+     * Display the resource.
+     * @param  Applications  $applications
      * @return \Inertia\Response
      */
-    public function create()
-    {
-        $projects = Project::with('project_url')->get();
-        return Inertia::render('applications/create', compact('projects'));
+    public function show(Applications $applications) {
+        return Inertia::render('applications/show', compact('applications'));
     }
 
     /**
@@ -71,28 +62,18 @@ class ApplicationsController extends Controller
         return Redirect::back();
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Inertia\Response
-     */
-    public function edit(Applications $applications)
-    {
-        $projects = Project::with('project_url')->get();
-        return Inertia::render('applications/Edit', compact('applications', 'projects'));
-    }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param  Applications  $applications
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function update(Request $request, Applications $applications)
     {
-        $image = $project->image;
+        // @TODO change $projcet to $applications
+        $image = $applications->image;
         $request->validate([
             'name' => ['required', 'min:3'],
             'skill_id' => ['required']
@@ -117,7 +98,7 @@ class ApplicationsController extends Controller
      * @param  Applications  $applications
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function destroy($id)
+    public function destroy(Applications $applications)
     {
         Storage::delete($applications->cv);
         Storage::delete($applications->cover_letter);

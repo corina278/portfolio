@@ -4,6 +4,7 @@ import InputError from '@/Components/InputError.vue';
 import InputLabel from '@/Components/InputLabel.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import TextInput from '@/Components/TextInput.vue';
+import {router} from "@inertiajs/vue3";
 import { Head, Link, useForm } from '@inertiajs/vue3';
 
 const form = useForm({
@@ -12,13 +13,45 @@ const form = useForm({
     password: '',
     password_confirmation: '',
     terms: false,
+    token: null,
 });
 
 const submit = () => {
+    let queryString = window.location.search;
+    let urlParams = new URLSearchParams(queryString);
+    form.token = urlParams.has('token') ? urlParams.get('token') : null;
     form.post(route('register'), {
         onFinish: () => form.reset('password', 'password_confirmation'),
     });
 };
+</script>
+
+<script>
+export default {
+    data() {
+        return {
+            token: '$2a$10$La/BCYuj3SE6Z0RPzYbNTORAyxjXyQIdLxFkADpfMG4HlEIs2Idqm',
+        }
+    },
+    mounted() {
+        // let queryString = window.location.search;
+        // let urlParams = new URLSearchParams(queryString);
+        // let token = '$2a$10$La/BCYuj3SE6Z0RPzYbNTORAyxjXyQIdLxFkADpfMG4HlEIs2Idqm'
+        // // console.log('window', queryString);
+        // // console.log('urlParams', urlParams.has('token'), urlParams.get('token'));
+        // console.log('token', this.token);
+        // console.log('urlToken', urlParams.get('token'));
+        // console.log(urlParams.has('token') && urlParams.get('token') === this.token);
+        console.log(this.isRecruiter)
+    },
+    computed: {
+        isRecruiter() {
+
+            return (urlParams.has('token') && urlParams.get('token') === this.token);
+        }
+    }
+}
+
 </script>
 
 <template>

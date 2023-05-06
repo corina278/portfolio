@@ -37,6 +37,7 @@ export default {
 <template>
     <div class="bg-slate-200 dark:bg-slate-900">
         <!-- Header -->
+<!--        <AuthenticatedLayout v-if="false"></AuthenticatedLayout>-->
         <Header
             @showApplications="showApplications = true"
             @hideApplications="showApplications = false"
