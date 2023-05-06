@@ -114,11 +114,14 @@ class ApplicationsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param  Applications  $applications
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy($id)
     {
-        //
+        Storage::delete($applications->cv);
+        Storage::delete($applications->cover_letter);
+        $applications->delete();
+        return Redirect::back()->with('message', 'Application deleted successfully.');
     }
 }

@@ -44,7 +44,12 @@
                         <button class="text-sm font-semibold leading-6 text-gray-900" @click="$emit('showApplications'); hideSections = true">Apply for jobs</button>
                     </PopoverGroup>
                     <div class="hidden lg:flex lg:flex-1 lg:justify-end">
-                        <Link :href="route(login)" class="text-sm font-semibold leading-6 text-gray-900">Log in <span aria-hidden="true">&rarr;</span></Link>
+
+                        <Link class="text-sm font-semibold leading-6 text-gray-900"
+                            :href="route('login')">
+                            Log in
+                            <span aria-hidden="true"/>
+                        </Link>
                     </div>
                 </nav>
                 <Dialog as="div" class="lg:hidden" @close="mobileMenuOpen = false" :open="mobileMenuOpen">
