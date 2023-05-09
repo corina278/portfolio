@@ -25,17 +25,32 @@
                                 <InputError class="mt-2" :message="form.errors.name" />
                             </div>
 
-                            <div class="mt-2">
-                                <InputLabel for="image" value="Image" />
+                            <div>
+                                <InputLabel for="name" value="Name" />
 
                                 <TextInput
-                                    id="image"
-                                    type="file"
+                                    id="name"
+                                    type="text"
                                     class="mt-1 block w-full"
-                                    @input="form.image = $event.target.files[0]"
+                                    v-model="form.name"
+                                    autofocus
+                                    autocomplete="username"
                                 />
 
-                                <InputError class="mt-2" :message="form.errors.image" />
+                                <InputError class="mt-2" :message="form.errors.name" />
+                            </div>
+
+                            <div class="mt-2">
+                                <InputLabel for="file" value="File" />
+
+                                <TextInput
+                                    id="file"
+                                    type="file"
+                                    class="mt-1 block w-full"
+                                    @input="form.file = $event.target.files[0]"
+                                />
+
+                                <InputError class="mt-2" :message="form.errors.file" />
                             </div>
 
                             <div class="flex items-center justify-end mt-4">
@@ -63,6 +78,7 @@ import {Head, Link, useForm} from '@inertiajs/vue3';
 const form = useForm({
     name: '',
     cv:null,
+    cover_letter:null,
     letter:null,
     image: null,
     remember: false,

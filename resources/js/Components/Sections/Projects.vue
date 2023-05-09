@@ -11,7 +11,7 @@ defineProps({
 export default {
     methods: {
         getsKillUrl(skill) {
-            return 'projects?skill=' +   skill
+            return 'projects?skill=' + skill;
         }
     }
 }

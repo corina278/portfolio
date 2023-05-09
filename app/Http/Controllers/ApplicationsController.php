@@ -54,10 +54,10 @@ class ApplicationsController extends Controller
                 'project_url' => $request->project_url,
                 'project_id' => $request->project_id,
                 'cv' => $request->cv,
-                'cover_letter' => $request->cover_letter
+                'cover_letter' => $request->cover_letter,
             ]);
 
-            return Redirect::route('applications/index')->with('message', 'Application created successfully.');
+            return Redirect::route('applications.index')->with('message', 'Application created successfully.');
         }
         return Redirect::back();
     }
@@ -73,23 +73,31 @@ class ApplicationsController extends Controller
     public function update(Request $request, Applications $applications)
     {
         // @TODO change $projcet to $applications
-        $image = $applications->image;
+        $cv = $applications->cv;
+        $cover_letter = $applications->cover_letter;
         $request->validate([
             'name' => ['required', 'min:3'],
-            'skill_id' => ['required']
+            'skill_id' => ['required'],
+            'project_url' => ['required'],
         ]);
-        if($request->hasFile('image')){
-            Storage::delete($project->image);
-            $image = $request->file('image')->store('projects');
+        if($request->hasFile('cv')){
+            Storage::delete($applications->cv);
+            $cv = $request->file('cv')->store('applications');
         }
 
-        $project->update([
+        if($request->hasFile('cover_letter')){
+            Storage::delete($applications->cover_letter);
+            $cover_letter = $request->file('cover_letter')->store('applications');
+        }
+
+        $applications->update([
             'name' => $request->name,
             'skill_id' => $request->skill_id,
             'project_url' => $request->project_url,
-            'image' => $image
+            'cv' => $cv,
+            'cover_letter' =>$cover_letter,
         ]);
-        return Redirect::route('projects.index')->with('message', 'Project updated successfully.');
+        return Redirect::route('applications.index')->with('message', 'Application updated successfully.');
     }
 
     /**
