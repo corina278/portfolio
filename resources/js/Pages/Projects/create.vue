@@ -61,15 +61,16 @@
                                     id="image"
                                     type="file"
                                     class="mt-1 block w-full"
-                                    @input="form.image = $event.target.files[0]"
+                                    @input="test($event)"
                                 />
+                                <!--                                    @input="form.image = $event.target.files[0]"-->
 
                                 <InputError class="mt-2" :message="form.errors.image" />
                             </div>
 
                             <div class="flex items-center justify-end mt-4">
 
-                                <PrimaryButton class="ml-4" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
+                                <PrimaryButton class="ml-4" type="submit" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
                                     Store
                                 </PrimaryButton>
                             </div>
@@ -93,13 +94,51 @@ defineProps({
     skills: Array
 })
 
-const form = useForm({
-    name: '',
-    image: null,
-    skill_id: "",
-    project_url: ""
-});
+</script>
 
-const submit = () => {
-    form.post(route('projects.store'));
-};</script>
+<script>
+import Multiselect from '@vueform/multiselect';
+import {useForm} from "@inertiajs/vue3";
+export default {
+    components: {
+        Multiselect,
+    },
+
+    mounted() {
+        this.options = this.skills.map(item => {
+            return item.name
+        });
+    },
+    data() {
+        return {
+            options: [],
+            form: {
+                name: '',
+                image: null,
+                skills: [],
+                project_url: "",
+                errors: [],
+            }
+        }
+    },
+    methods: {
+        submit() {
+            console.log(route('projects.store'));
+            axios.post(route('projects.store'),
+                this.form,
+                {
+                    headers: {
+                        'Content-Type': 'multipart/form-data'
+                    }
+                })
+        },
+        test(event) {
+            console.log(event.target.files[0]);
+            this.form.image = event.target.files[0];
+            console.log('form-image', this.form.image);
+        }
+    }
+}
+</script>
+
+<style src="@vueform/multiselect/themes/default.css"></style>

@@ -20,8 +20,8 @@ class ApplicationsController extends Controller
      */
     public function index()
     {
-        $applications = ApplicationsResource::collection(Applications::with('project_url')->get());
-        return Inertia::render('applications/index', compact('applications'));
+        $applications = ApplicationsResource::collection(Applications::with('project')->get());
+        return Inertia::render('Applications/index', compact('applications'));
     }
 
     public function create()
@@ -37,7 +37,7 @@ class ApplicationsController extends Controller
      * @return \Inertia\Response
      */
     public function show(Applications $applications) {
-        return Inertia::render('applications/show', compact('applications'));
+        return Inertia::render('Applications/show', compact('applications'));
     }
 
     /**
@@ -64,7 +64,7 @@ class ApplicationsController extends Controller
                 'cover_letter' => $request->cover_letter,
             ]);
 
-            return Redirect::route('applications.index')->with('message', 'Application created successfully.');
+            return Redirect::route('Applications.index')->with('message', 'Application created successfully.');
         }
         return Redirect::back();
     }
@@ -104,7 +104,7 @@ class ApplicationsController extends Controller
             'cv' => $cv,
             'cover_letter' =>$cover_letter,
         ]);
-        return Redirect::route('applications.index')->with('message', 'Application updated successfully.');
+        return Redirect::route('Applications.index')->with('message', 'Application updated successfully.');
     }
 
     /**

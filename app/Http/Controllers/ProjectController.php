@@ -43,12 +43,13 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
+        $validated = $request->validate([
             'image' => ['required', 'image'],
             'name' => ['required', 'min:3'],
             'skills' => ['required', 'array'],
             'project_url' => ['nullable', 'string']
         ]);
+
 
         if($request->hasFile('image')){
             $image = $request->file('image')->store('projects');
@@ -56,9 +57,8 @@ class ProjectController extends Controller
                     'skills' => $validated['skills'],
                     'name' => $validated['name'],
                     'image' => $image,
-                    'project_url' => $request->project_url
+                    'project_url' => $validated['project_url']
             ]);
-
             return Redirect::route('projects.index')->with('message', 'Project created successfully.');
         }
         return Redirect::back();

@@ -19,6 +19,6 @@ class Applications extends Model implements Auditable
     }
 
     public function project(){
-        return $this->belongsTo(Project::class);
+        return $this->hasOne(Project::class, 'project_id');
     }
 }

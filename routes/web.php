@@ -18,8 +18,7 @@ use Inertia\Inertia;
 |
 */
 
-Route::get('/', [\App\Http\Controllers\WelcomeController::class, 'welcome'])->name('welcome');
-Route::get('/applications', [\App\Http\Controllers\ApplicationsController::class, 'applications'])->name('Applications');
+
 Route::get('/get-token-whatever', [TokenController::class, 'getToken']);
 
 Route::middleware(['auth', 'verified'])->group(function ()
@@ -30,6 +29,7 @@ Route::middleware(['auth', 'verified'])->group(function ()
 });
 
 Route::middleware('auth')->group(function () {
+    Route::get('/', [\App\Http\Controllers\WelcomeController::class, 'welcome'])->name('welcome');
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
@@ -37,7 +37,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('/projects',\App\Http\Controllers\ProjectController::class);
     Route::resource('/applications',\App\Http\Controllers\ApplicationsController::class);
 
-
+    Route::get('/applications', [\App\Http\Controllers\ApplicationsController::class, 'applications'])->name('Applications');
 
     Route::get('/upload-file', [FileUpload::class, 'createForm']);
     Route::post('/upload-file', [FileUpload::class, 'fileUpload'])->name('fileUpload');

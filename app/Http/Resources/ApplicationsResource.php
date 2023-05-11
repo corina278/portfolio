@@ -20,7 +20,7 @@ class ApplicationsResource extends JsonResource
             'cv' => asset('/storage/'. $this->cv),
             'cover_letter' => asset('/storage', $this->cover_letter),
             'skill_id' => new SkillResource($this->whenLoaded('skill')),
-            'project_url' => new ProjectResource($this->whenLoaded('projects')),
+            'project_url' => new ProjectResource($this->whenLoaded('project')),
         ];
     }
 }
