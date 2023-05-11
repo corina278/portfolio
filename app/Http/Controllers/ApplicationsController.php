@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Resources\ApplicationsResource;
 use App\Models\Applications;
+use App\Models\Project;
+use App\Models\Skill;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Storage;
@@ -20,6 +22,13 @@ class ApplicationsController extends Controller
     {
         $applications = ApplicationsResource::collection(Applications::with('project_url')->get());
         return Inertia::render('applications/index', compact('applications'));
+    }
+
+    public function create()
+    {
+        $skills = Skill::all();
+        $projects = Project::with('applications')->whereHas('applications')->get();
+        return Inertia::render('Applications/create', compact('skills', 'projects'));
     }
 
     /**
@@ -42,7 +51,6 @@ class ApplicationsController extends Controller
         $request->validate([
             'name' => ['required', 'min:3'],
             'skill_id' => ['required'],
-            'project_url' => ['required'],
             'project_id' => ['required']
         ]);
 
@@ -51,7 +59,6 @@ class ApplicationsController extends Controller
             Applications::create([
                 'skill_id' => $request->skill_id,
                 'name' => $request->name,
-                'project_url' => $request->project_url,
                 'project_id' => $request->project_id,
                 'cv' => $request->cv,
                 'cover_letter' => $request->cover_letter,
@@ -78,7 +85,7 @@ class ApplicationsController extends Controller
         $request->validate([
             'name' => ['required', 'min:3'],
             'skill_id' => ['required'],
-            'project_url' => ['required'],
+            'project_id' => ['required'],
         ]);
         if($request->hasFile('cv')){
             Storage::delete($applications->cv);
@@ -93,7 +100,7 @@ class ApplicationsController extends Controller
         $applications->update([
             'name' => $request->name,
             'skill_id' => $request->skill_id,
-            'project_url' => $request->project_url,
+            'project_id' => $request->project_id,
             'cv' => $cv,
             'cover_letter' =>$cover_letter,
         ]);

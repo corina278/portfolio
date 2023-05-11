@@ -1,3 +1,12 @@
+<script>
+import Multiselect from '@vueform/multiselect'
+
+export default {
+    components: {
+        Multiselect,
+    }
+}
+</script>
 
 <template>
     <Head title="New Project"/>
@@ -13,17 +22,13 @@
                         <form class="p-4" @submit.prevent="submit">
                             <div>
                                 <InputLabel for="skill" value="Skill" />
-                                <Multiselect
-                                        id="multiselect"
-                                        class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md"
-                                        :options="options"
-                                        v-model="form.skills"
-                                        :value="form.skills"
-                                        mode="multiple"
-                                        placeholder="Choose skills"
-                                        :hide-selected="false"/>
-<!--                                    <option v-for="skill in skills" :key="skill.id" :value="skill.id">{{skill.name}}</option>-->
-                                <InputError class="mt-2" :message="form.errors.skills" />
+                                <Multiselect v-model="form.skill_id"
+                                        id="skill_id"
+                                        name="skill_id"
+                                        class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">
+                                    <option v-for="skill in skills" :key="skill.id" :value="skill.id">{{skill.name}}</option>
+                                </Multiselect>
+                                <InputError class="mt-2" :message="form.errors.skill_id" />
                             </div>
 
                             <div>

@@ -12,7 +12,15 @@ class Project extends Model implements Auditable
     use HasFactory;
     use AuditableTrait;
 
-    protected $fillable = ['skill_id', 'name', 'image', 'project_url'];
+    protected $fillable = ['skills', 'name', 'image', 'project_url'];
+
+    protected $casts = [
+        'skills' => 'array'
+    ];
+
+    public function applications() {
+        return $this->hasMany(Applications::class);
+    }
 
     public function skill() {
         return $this->belongsTo(Skill::class);

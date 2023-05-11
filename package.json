@@ -26,6 +26,7 @@
         "bootstrap-vue": "^2.23.1",
         "portal-vue": "^3.0.0",
         "vue-loader": "^17.1.0",
+        "vue-multi-select": "^4.6.0",
         "vue-multiselect": "^2.1.7"
     }
 }

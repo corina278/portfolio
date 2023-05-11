@@ -46,14 +46,15 @@ class ProjectController extends Controller
         $request->validate([
             'image' => ['required', 'image'],
             'name' => ['required', 'min:3'],
-            'skill_id' => ['required']
+            'skills' => ['required', 'array'],
+            'project_url' => ['nullable', 'string']
         ]);
 
         if($request->hasFile('image')){
             $image = $request->file('image')->store('projects');
             Project::create([
-                    'skill_id' => $request->skill_id,
-                    'name' => $request->name,
+                    'skills' => $validated['skills'],
+                    'name' => $validated['name'],
                     'image' => $image,
                     'project_url' => $request->project_url
             ]);

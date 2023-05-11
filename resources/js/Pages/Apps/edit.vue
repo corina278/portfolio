@@ -1,4 +1,3 @@
-
 <template>
     <Head title="New Project"/>
     <AuthenticatedLayout>
@@ -13,17 +12,13 @@
                         <form class="p-4" @submit.prevent="submit">
                             <div>
                                 <InputLabel for="skill" value="Skill" />
-                                <Multiselect
-                                        id="multiselect"
-                                        class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md"
-                                        :options="options"
-                                        v-model="form.skills"
-                                        :value="form.skills"
-                                        mode="multiple"
-                                        placeholder="Choose skills"
-                                        :hide-selected="false"/>
-<!--                                    <option v-for="skill in skills" :key="skill.id" :value="skill.id">{{skill.name}}</option>-->
-                                <InputError class="mt-2" :message="form.errors.skills" />
+                                <select v-model="form.skill_id"
+                                        id="skill_id"
+                                        name="skill_id"
+                                        class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">
+                                    <option v-for="skill in skills" :key="skill.id" :value="skill.id">{{skill.name}}</option>
+                                    <InputError class="mt-2" :message="$page.props.errors.skill_id" />
+                                </select>
                             </div>
 
                             <div>
@@ -38,7 +33,7 @@
                                     autocomplete="name"
                                 />
 
-                                <InputError class="mt-2" :message="form.errors.name" />
+                                <InputError class="mt-2" :message="$page.props.errors.name" />
                             </div>
 
                             <div>
@@ -52,7 +47,7 @@
                                     autocomplete="projecturl"
                                 />
 
-                                <InputError class="mt-2" :message="form.errors.name" />
+                                <InputError class="mt-2" :message="form.errors.project_url" />
                             </div>
                             <div class="mt-2">
                                 <InputLabel for="image" value="Image" />
@@ -64,13 +59,13 @@
                                     @input="form.image = $event.target.files[0]"
                                 />
 
-                                <InputError class="mt-2" :message="form.errors.image" />
+                                <InputError class="mt-2" :message="$page.props.errors.image" />
                             </div>
 
                             <div class="flex items-center justify-end mt-4">
 
-                                <PrimaryButton class="ml-4" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
-                                    Store
+                                <PrimaryButton class="ml-4">
+                                    Update
                                 </PrimaryButton>
                             </div>
                         </form>
@@ -88,18 +83,27 @@ import InputLabel from '@/Components/InputLabel.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import TextInput from '@/Components/TextInput.vue';
 import {Head, Link, useForm} from '@inertiajs/vue3';
+import {router} from "@inertiajs/vue3";
 
-defineProps({
-    skills: Array
-})
+const props = defineProps({
+    skills: Array,
+    project: Object,
+});
 
 const form = useForm({
-    name: '',
+    name: props.project?.name,
     image: null,
-    skill_id: "",
-    project_url: ""
+    skill_id: props.project?.skill_id,
+    project_url: props.project?.project_url
 });
 
 const submit = () => {
-    form.post(route('projects.store'));
-};</script>
+    router.post(`/projects/${props.project.id}`,{
+        _method: "put",
+        name: form.name,
+        image: form.image,
+        skill_id: form.skill_id,
+        project_url: form.project_url
+})
+}
+</script>
