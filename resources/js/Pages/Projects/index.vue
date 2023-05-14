@@ -46,7 +46,7 @@
                                         {{ project.name }}
                                     </td>
                                     <td class="px-6 py-4">
-                                        {{ project.skill.name }}
+                                        {{ project.skills }}
                                     </td>
                                     <td class="px-6 py-4">
                                         <img :src="project.image" class="w-14 h-14 rounded-full"/>

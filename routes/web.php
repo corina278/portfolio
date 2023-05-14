@@ -37,7 +37,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('/projects',\App\Http\Controllers\ProjectController::class);
     Route::resource('/applications',\App\Http\Controllers\ApplicationsController::class);
 
-    Route::get('/applications', [\App\Http\Controllers\ApplicationsController::class, 'applications'])->name('Applications');
+//    Route::get('/applications', [\App\Http\Controllers\ApplicationsController::class, 'applications'])->name('applications.index');
 
     Route::get('/upload-file', [FileUpload::class, 'createForm']);
     Route::post('/upload-file', [FileUpload::class, 'fileUpload'])->name('fileUpload');

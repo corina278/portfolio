@@ -41,6 +41,7 @@
                                 </PopoverPanel>
                             </transition>
                         </Popover>
+<!--                @TODO acelasi lucru ca la showApplications si pentru Skills Projects Applications-->
                         <button class="text-sm font-semibold leading-6 text-gray-900" @click="$emit('showApplications'); hideSections = true">Apply for jobs</button>
                     </PopoverGroup>
                     <div class="hidden lg:flex lg:flex-1 lg:justify-end">
