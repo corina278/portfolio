@@ -16,7 +16,7 @@
                             <Bars3Icon class="h-6 w-6" aria-hidden="true" />
                         </button>
                     </div>
-                    <PopoverGroup class="hidden lg:flex lg:gap-x-12">
+            <PopoverGroup class="hidden lg:flex lg:gap-x-12">
                         <Popover v-if="!hideSections" class="relative">
                             <PopoverButton class="flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900">
                                 Sections
@@ -43,8 +43,37 @@
                         </Popover>
 <!--                @TODO acelasi lucru ca la showApplications si pentru Skills Projects Applications-->
                         <button class="text-sm font-semibold leading-6 text-gray-900" @click="$emit('showApplications'); hideSections = true">Apply for jobs</button>
+                        <Popover v-if="!hideSections && $page.props.auth.user" class="relative">
+                            <PopoverButton class="flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900">
+                                {{ $page.props.auth.user.name }}
+                                <ChevronDownIcon class="h-5 w-5 flex-none text-gray-400" aria-hidden="true" />
+                            </PopoverButton>
+                            <transition enter-active-class="transition ease-out duration-200" enter-from-class="opacity-0 translate-y-1" enter-to-class="opacity-100 translate-y-0" leave-active-class="transition ease-in duration-150" leave-from-class="opacity-100 translate-y-0" leave-to-class="opacity-0 translate-y-1">
+                                <PopoverPanel class="absolute -left-8 top-full z-10 mt-3 w-screen max-w-md overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-gray-900/5">
+                                    <div class="p-4">
+                                        <div class="group relative flex items-center gap-x-6 rounded-lg p-4 text-sm leading-6 hover:bg-gray-50">
+                                            <div class="flex-auto">
+                                            <a :href="route('profile.edit')" class="block font-semibold text-gray-900">
+                                                Profile
+                                                <span class="absolute inset-0" />
+                                            </a>
+                                            </div>
+                                        </div>
+                                        <div class="group relative flex items-center gap-x-6 rounded-lg p-4 text-sm leading-6 hover:bg-gray-50">
+                                            <div class="flex-auto">
+                                                <button @click="logout" class="block font-semibold text-gray-900">
+                                                    Log Out
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </PopoverPanel>
+                            </transition>
+                        </Popover>
+                        <a v-if="!$page.props.auth.user" :href="route('login')" class="text-sm font-semibold leading-6 text-gray-900">Login</a>
                     </PopoverGroup>
-                    <div class="hidden lg:flex lg:flex-1 lg:justify-end">
+
+            <div class="hidden lg:flex lg:flex-1 lg:justify-end">
 
                         <Link class="text-sm font-semibold leading-6 text-gray-900"
                             :href="route('login')">
@@ -116,6 +145,7 @@
     } from "@heroicons/vue/24/solid";
     import Applications from "@/Components/Frontend/Applications.vue";
     import {router} from "@inertiajs/vue3";
+    import DropdownLink from "@/Components/DropdownLink.vue";
 
     const callsToAction = [
         { name: 'Watch demo', href: '#', icon: PlayCircleIcon },
@@ -135,6 +165,10 @@
     const setScrollBg = (value) => {
         scrollBg.value = value;
     };
+
+    const logout = () => {
+        router.post(route('logout'));
+    }
 
     onMounted(() => {
         window.addEventListener("scroll", () => {

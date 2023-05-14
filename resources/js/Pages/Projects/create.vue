@@ -61,7 +61,8 @@
                                     id="image"
                                     type="file"
                                     class="mt-1 block w-full"
-                                    @input="test($event)"
+                                    @input="form.image = $event.target.files[0]"
+
                                 />
                                 <!--                                    @input="form.image = $event.target.files[0]"-->
 
@@ -84,61 +85,81 @@
 
 <script setup>
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
+import Multiselect from '@vueform/multiselect';
 import InputError from '@/Components/InputError.vue';
 import InputLabel from '@/Components/InputLabel.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import TextInput from '@/Components/TextInput.vue';
-import {Head, Link, useForm} from '@inertiajs/vue3';
+import {Head, Link, router, useForm} from '@inertiajs/vue3';
+import {computed, onMounted} from "vue";
 
-defineProps({
+const props = defineProps({
     skills: Array
 })
 
-</script>
+let form = useForm( {
+    name: '',
+    image: null,
+    skills: [],
+    project_url: "",
+    errors: [],
+});
 
-<script>
-import Multiselect from '@vueform/multiselect';
-import {useForm} from "@inertiajs/vue3";
-export default {
-    components: {
-        Multiselect,
-    },
-
-    mounted() {
-        this.options = this.skills.map(item => {
-            return item.name
-        });
-    },
-    data() {
-        return {
-            options: [],
-            form: {
-                name: '',
-                image: null,
-                skills: [],
-                project_url: "",
-                errors: [],
-            }
-        }
-    },
-    methods: {
-        submit() {
-            console.log(route('projects.store'));
-            axios.post(route('projects.store'),
-                this.form,
-                {
-                    headers: {
-                        'Content-Type': 'multipart/form-data'
-                    }
-                })
-        },
-        test(event) {
-            console.log(event.target.files[0]);
-            this.form.image = event.target.files[0];
-            console.log('form-image', this.form.image);
-        }
-    }
+const submit = () => {
+    form.post(route('projects.store'));
 }
+
+const options = computed(() =>
+    props.skills.map(item => {
+        return item.name
+    })
+)
 </script>
+
+<!--<script>-->
+<!--import {router} from "@inertiajs/vue3";-->
+<!--import Multiselect from '@vueform/multiselect';-->
+<!--import {useForm} from "@inertiajs/vue3";-->
+<!--export default {-->
+<!--    components: {-->
+<!--        Multiselect,-->
+<!--    },-->
+
+<!--    mounted() {-->
+<!--        this.options = this.skills.map(item => {-->
+<!--            return item.name-->
+<!--        });-->
+<!--    },-->
+<!--    data() {-->
+<!--        return {-->
+<!--            options: [],-->
+<!--            form: {-->
+<!--                name: '',-->
+<!--                image: null,-->
+<!--                skills: [],-->
+<!--                project_url: "",-->
+<!--                errors: [],-->
+<!--            }-->
+<!--        }-->
+<!--    },-->
+<!--    methods: {-->
+<!--        // submit() {-->
+<!--        //     console.log(route('projects.store'));-->
+<!--        //     router.post(route('projects.store'),-->
+<!--        //         this.form,-->
+<!--        //         {-->
+<!--        //             headers: {-->
+<!--        //                 'Content-Type': 'multipart/form-data'-->
+<!--        //             }-->
+<!--        //         });-->
+<!--        // },-->
+<!--        test(event) {-->
+<!--            console.log(event.target.files[0]);-->
+<!--            this.form.image = event.target.files[0];-->
+<!--            console.log('form-image', this.form.image);-->
+<!--        }-->
+<!--    }-->
+<!--}-->
+<!--</script>-->
 
 <style src="@vueform/multiselect/themes/default.css"></style>

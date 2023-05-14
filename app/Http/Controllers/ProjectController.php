@@ -50,7 +50,6 @@ class ProjectController extends Controller
             'project_url' => ['nullable', 'string']
         ]);
 
-
         if($request->hasFile('image')){
             $image = $request->file('image')->store('projects');
             Project::create([
@@ -59,7 +58,8 @@ class ProjectController extends Controller
                     'image' => $image,
                     'project_url' => $validated['project_url']
             ]);
-            return Redirect::route('projects.index')->with('message', 'Project created successfully.');
+
+            return Redirect::route('projects.index')->with('message', 'Project updated successfully.');
         }
         return Redirect::back();
     }

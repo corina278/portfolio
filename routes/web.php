@@ -28,8 +28,8 @@ Route::middleware(['auth', 'verified'])->group(function ()
     })->name('dashboard');
 });
 
+Route::get('/', [\App\Http\Controllers\WelcomeController::class, 'welcome'])->name('welcome');
 Route::middleware('auth')->group(function () {
-    Route::get('/', [\App\Http\Controllers\WelcomeController::class, 'welcome'])->name('welcome');
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
