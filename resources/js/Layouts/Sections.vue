@@ -48,31 +48,23 @@ export default {
         <Header
             @showApplications="showApplications = true"
             @hideApplications="showApplications = false"
-            @showSkillsIndex="showSkillsIndex = true"
-            @showProjectsIndex="showProjectsIndex = true"
-            @showApplicationsIndex="showApplicationsIndex = true"
-            @hideSections="showApplications = false"
-            />
-        <!--            @hideSkillsIndex="showSkillsIndex = false"-->
-<!--            @hideProjectsIndex="showProjectsIndex = false"-->
-<!--            @hideApplicationsIndex="showApplicationsIndex = false"-->
-        <SkillsIndex v-if="showSkillsIndex"
-                     :skills="skills"
         />
-        <!--                     @hideSkillsIndex="showSkillsIndex=false"-->
-        <ProjectsIndex v-if="showProjectsIndex"
-                     @hideProjectsIndex="showProjectsIndex=false"
-                     :projects="projects"
-        />
-        <ApplicationsIndex v-if="showApplicationsIndex"
-                     @hideApplicationsIndex="showApplicationsIndex=false"
-                     :applications="applications"
-        />
-        <Applications v-if="showApplications"
-                      @hideApplications="showApplications = false"
-                      :skills="skills"
-                      :projects="projects"
-        />
+<!--        <SkillsIndex v-if="showSkillsIndex"-->
+<!--                     :skills="skills"-->
+<!--        />-->
+<!--        <ProjectsIndex v-if="showProjectsIndex"-->
+<!--                     @hideProjectsIndex="showProjectsIndex=false"-->
+<!--                     :projects="projects"-->
+<!--        />-->
+<!--        <ApplicationsIndex v-if="   showApplicationsIndex"-->
+<!--                     @hideApplicationsIndex="showApplicationsIndex=false"-->
+<!--                     :applications="applications"-->
+<!--        />-->
+<!--        <Applications v-if="showApplications"-->
+<!--                      @hideApplications="showApplications = false"-->
+<!--                      :skills="skills"-->
+<!--                      :projects="projects"-->
+<!--        />-->
 
         <!--        Hero primary -->
         <Hero v-if="!showApplications"/>

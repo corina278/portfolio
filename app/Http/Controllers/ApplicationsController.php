@@ -48,6 +48,7 @@ class ApplicationsController extends Controller
      */
     public function store(Request $request)
     {
+
         $validated = $request->validate([
             'name' => ['required', 'min:3'],
             'skills' => ['required', 'array'],
@@ -78,9 +79,17 @@ class ApplicationsController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  Applications  $applications
-     * @return \Illuminate\Http\RedirectResponse
+     * @return \Inertia\Response
      */
-    public function update(Request $request, Applications $applications)
+
+    public function edit(Applications $application)
+    {
+        $skills = Skill::all();
+        $project = $application->project;
+        return Inertia::render('Applications/edit', compact('project', 'skills','application'));
+    }
+
+    public function update(Request $request, Applications $application)
     {
         // @TODO change $projcet to $applications
         $cv = $applications->cv;

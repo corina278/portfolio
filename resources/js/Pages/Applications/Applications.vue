@@ -38,6 +38,9 @@ import Multiselect from '@vueform/multiselect';
 import {useForm} from "@inertiajs/vue3";
 import InputLabel from '@/Components/InputLabel.vue';
 import {computed} from "vue";
+import "@vueform/multiselect/themes/default.css";
+import PrimaryButton from "@/Components/PrimaryButton.vue";
+import Header from "@/Components/Frontend/Header.vue";
 
 const props = defineProps({
     skills: Array,
@@ -49,25 +52,40 @@ let form = useForm( {
     cv: null,
     cover_letter: null,
     skills: [],
+    project_id: '',
     project_url: "",
     errors: [],
 });
 
-// const options = computed(() =>
-//     props.skills.map(item => {
-//         return item.name
-//     })
-// )
+const options = computed(() =>
+    props.skills.data.map(item => {
+        return item.name
+    })
+)
+
+const submit = () => {
+    form.post(route('applications.store'), {
+        onSuccess: () => form.reset(),
+    });
+};
+
+function clickProject(project) {
+    form.selectedProject = project
+    form.project_url = project.project_url
+    form.project_id = project.id
+}
+
 </script>
 
 <template>
     <Head title="Apply for jobs"/>
+    <Header :hide-sections="true"/>
     <div class="container mx-auto">
         <nav class="mb-24 border-b-2 border-light-tail-100 dark:text-dark-navy-100"/>
         <section class="grid gap-y-12 lg:grid-cols-3 lg:gap-8">
-            <div class="project" v-for="project in projects"
+            <div class="project" v-for="project in projects.data"
                  :class="form.selectedProject === project ? 'project-wrapper is-selected' : 'project-wrapper'"
-                 @click="form.selectedProject = project"
+                 @click="clickProject(project)"
             >
                 <ProjectApplications :key="project.id" :hideLink="true" :project="project" />
             </div>
@@ -97,17 +115,17 @@ let form = useForm( {
                             </div>
                             <div class="mb-3 p-5 text-gray-900">
                                 <label class="form-label" for="name">Name:</label>
-                                <input class="form-control" type="text" id="name">
+                                <input class="form-control" type="text" id="name" v-model="form.name">
                             </div>
 
                             <div class="mb-3 p-5 text-gray-900">
                                 <label for="formFile" class="form-label">CV: </label>
-                                <file-upload class="form-control" id="formFile" v-model="form.file"/>
+                                <file-upload class="form-control" id="formFile" v-model="form.cv"/>
                             </div>
 
                             <div class="mb-3 p-5 text-gray-900">
                                 <label for="formFile" class="form-label">Cover letter: </label>
-                                <file-upload class="form-control" id="formFile" v-model="form.file"/>
+                                <file-upload class="form-control" id="formFile" v-model="form.cover_letter"/>
                             </div>
 
                             <div class="mb-3 p-5 text-gray-900">
@@ -141,6 +159,11 @@ let form = useForm( {
          border-radius: 10px;
          border: 6px solid lightskyblue;
     }
+
+    .multiselect {
+        z-index: 0
+    }
+
  /*img{*/
  /*    display: flex;*/
  /*}*/

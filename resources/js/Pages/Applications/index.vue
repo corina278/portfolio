@@ -52,7 +52,11 @@
                                         {{ application.name }}
                                     </td>
                                     <td class="px-6 py-4">
-                                        {{ application.skill.name }}
+                                        <ul>
+                                            <li v-for="skill in application.skills">
+                                                {{ skill }}
+                                            </li>
+                                        </ul>
                                     </td>
                                     <td class="px-6 py-4">
                                         <file-upload class="form-control" id="formFile" v-model="application.cv"/>

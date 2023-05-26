@@ -1,11 +1,7 @@
 
 <template>
-    <Head title="New Application"/>
-    <AuthenticatedLayout>
-        <template #header>
-            <h2 class="font-semibold text-xl text-gray-800 leading-tight">New Application</h2>
-        </template>
-
+    <Head title="Edit Application"/>
+    <Header/>
         <div class="py-12">
             <div class="max-w-md mx-auto sm:px-6 lg:px-8 bg-white">
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
@@ -86,7 +82,7 @@
                             <div class="flex items-center justify-end mt-4">
 
                                 <PrimaryButton class="ml-4" type="submit" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
-                                    Store
+                                    Update
                                 </PrimaryButton>
                             </div>
                         </form>
