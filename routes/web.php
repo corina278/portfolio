@@ -21,14 +21,15 @@ use Inertia\Inertia;
 
 Route::get('/get-token-whatever', [TokenController::class, 'getToken']);
 
-Route::middleware(['auth', 'verified'])->group(function ()
-{
-    Route::get('/dashboard', function (){
-        return Inertia::render('Dashboard');
-    })->name('dashboard');
-});
+//Route::middleware(['auth', 'verified'])->group(function ()
+//{
+//    Route::get('/dashboard', function (){
+//        return Inertia::render('Dashboard');
+//    })->name('dashboard');
+//});
 
 Route::get('/', [\App\Http\Controllers\WelcomeController::class, 'welcome'])->name('welcome');
+//Route::get('/dashboard', [\App\Http\Controllers\WelcomeController::class, 'welcome'])->name('welcome');
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -36,6 +37,8 @@ Route::middleware('auth')->group(function () {
     Route::resource('/skills', \App\Http\Controllers\SkillController::class);
     Route::resource('/projects',\App\Http\Controllers\ProjectController::class);
     Route::resource('/applications',\App\Http\Controllers\ApplicationsController::class);
+    Route::get('/applications-jobs',[\App\Http\Controllers\ApplicationsController::class, 'applicationsJobs'])->name('applications-jobs');
+    Route::get('/download',[\App\Http\Controllers\StorageController::class, 'download']);
 
 //    Route::get('/applications', [\App\Http\Controllers\ApplicationsController::class, 'applications'])->name('applications.index');
 

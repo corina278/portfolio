@@ -1,14 +1,15 @@
 <template>
-    <header class="bg-light-primary">
+    <header class="bg-light-primary header">
         <nav class="bg-light-primary mx-auto flex fixed items-center justify-between p-6 lg:px-8 w-full sm:px-4 rounded"
                 :class="{
             'bg-light-primary dark:bg-dark-primary': scrollBg,
             'bg-white dark:bg-slate-800': !scrollBg,
             } " aria-label="Global">
                 <div class="container flex flex-wrap justify-between items-center mx-auto lg:flex-1">
-                    <button class="flex items-center" @click="$emit('hideApplications'); hideSections = false">
+<!--                    <button class="flex items-center" @click="$emit('hideApplications'); hideSections = false">-->
+                    <Link class="flex items-center" :href="route('welcome')">
                         <img class="h-6 mr-3 sm:h-9" src="http://portfolio.test/img/PaperTown.png" alt="" />
-                    </button>
+                    </Link>
                     </div>
                     <div class="flex lg:hidden">
                         <button type="button" class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700" @click="mobileMenuOpen = true">
@@ -41,11 +42,12 @@
                                 </PopoverPanel>
                             </transition>
                         </Popover>
-<!--                @TODO acelasi lucru ca la showApplications si pentru Skills Projects Applications-->
-                        <button class="text-sm font-semibold leading-6 text-gray-900" @click="$emit('showApplications'); hideSections = true">Apply for jobs</button>
-                        <button class="text-sm font-semibold leading-6 text-gray-900" @click="$emit('showSkillsIndex')">Skills</button>
-                        <button class="text-sm font-semibold leading-6 text-gray-900" @click="$emit('showProjectsIndex')">Projects</button>
-                        <button class="text-sm font-semibold leading-6 text-gray-900" @click="$emit('showApplicationsIndex')">Applications</button>
+                        <!-- @TODO acelasi lucru ca la showApplications si pentru Skills Projects Applications -->
+
+                        <Link :href="route('applications-jobs')" class="text-sm font-semibold leading-6 text-gray-900"> Apply for jobs </Link>
+                        <Link v-if="$page.props.auth.user?.is_recruiter" :href="route('skills.index')" class="text-sm font-semibold leading-6 text-gray-900"> Skills </Link>
+                        <Link v-if="$page.props.auth.user?.is_recruiter" :href="route('projects.index')" class="text-sm font-semibold leading-6 text-gray-900"> Projects </Link>
+                        <Link v-if="$page.props.auth.user?.is_recruiter" :href="route('applications.index')" class="text-sm font-semibold leading-6 text-gray-900"> Applications </Link>
                 <Popover v-if="!hideSections && $page.props.auth.user" class="relative">
                             <PopoverButton class="flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900">
                                 {{ $page.props.auth.user.name }}
@@ -142,8 +144,13 @@
         ServerStackIcon
     } from "@heroicons/vue/24/solid";
     import Applications from "@/Components/Frontend/Applications.vue";
-    import {router} from "@inertiajs/vue3";
+    import {router, Link} from "@inertiajs/vue3";
     import DropdownLink from "@/Components/DropdownLink.vue";
+
+    const props = defineProps({
+        hideSections: false,
+    })
+
 
     const callsToAction = [
         { name: 'Watch demo', href: '#', icon: PlayCircleIcon },
@@ -180,8 +187,15 @@
         data() {
             return {
                 showApplications: {type: Boolean, default: false},
-                hideSections: false
+                // hideSections: false
             }
         }
     }
 </script>
+
+<style>
+    .header {
+        z-index: 100;
+        position: relative;
+    }
+</style>

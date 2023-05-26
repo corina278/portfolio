@@ -1,11 +1,7 @@
 
 <template>
     <Head title="New Application"/>
-    <AuthenticatedLayout>
-        <template #header>
-            <h2 class="font-semibold text-xl text-gray-800 leading-tight">New Application</h2>
-        </template>
-
+    <Header/>
         <div class="py-12">
             <div class="max-w-md mx-auto sm:px-6 lg:px-8 bg-white">
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
@@ -70,17 +66,21 @@
                                 <InputError class="mt-2" :message="form.errors.cover_letter" />
                             </div>
                             <div>
-                                <InputLabel for="project_url" value="URL" />
+<!--                                <InputLabel for="project_url" value="URL" />-->
 
-                                <TextInput
-                                    id="project_url"
-                                    type="text"
-                                    class="mt-1 block w-full"
-                                    v-model="form.project_url"
-                                    autocomplete="projecturl"
-                                />
+                                <select name="project" id="project" v-model="form.project_id">
+                                    <option v-for="project in projects"
+                                            :value="project.id">{{ project.name }}</option>
+                                </select>
+<!--                                <TextInput-->
+<!--                                    id="project_url"-->
+<!--                                    type="text"-->
+<!--                                    class="mt-1 block w-full"-->
+<!--                                    v-model="form.project_url"-->
+<!--                                    autocomplete="projecturl"-->
+<!--                                />-->
 
-                                <InputError class="mt-2" :message="form.errors.project_url" />
+<!--                                <InputError class="mt-2" :message="form.errors.project_url" />-->
                             </div>
 
                             <div class="flex items-center justify-end mt-4">
@@ -94,11 +94,10 @@
                 </div>
             </div>
         </div>
-    </AuthenticatedLayout>
 </template>
 
 <script setup>
-import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
+import Header from "@/Components/Frontend/Header.vue";
 import Multiselect from '@vueform/multiselect';
 import InputError from '@/Components/InputError.vue';
 import InputLabel from '@/Components/InputLabel.vue';
@@ -109,7 +108,8 @@ import {computed, onMounted} from "vue";
 import FileUpload from "@/Components/FileUpload.vue";
 
 const props = defineProps({
-    skills: Array
+    skills: Array,
+    projects: Array
 })
 
 let form = useForm( {
@@ -117,7 +117,7 @@ let form = useForm( {
     cv: null,
     cover_letter: null,
     skills: [],
-    project_url: "",
+    project_id: '',
     errors: [],
 });
 

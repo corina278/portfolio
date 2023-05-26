@@ -1,10 +1,5 @@
 <template>
-    <Head title="Applications Index"/>
-    <AuthenticatedLayout>
-        <template #header>
-            <h2 class="font-semibold text-xl text-gray-800 leading-tight">Applications</h2>
-        </template>
-
+    <Header/>
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
@@ -65,7 +60,7 @@
                                         <file-upload class="form-control" id="formFile" v-model="application.cover_letter"/>
                                     </td>
                                     <td class="px-6 py-4">
-                                        <file-upload class="form-control" id="formFile" v-model="application.project_url"/>
+                                        {{application.project_url}}
                                     </td>
                                     <td class="px-6 py-4">
                                         <Link :href="route('applications.edit', application.id)"  class="font-medium text-blue-500 hover:text-blue-700 mr-2">Edit</Link>
@@ -79,13 +74,12 @@
                 </div>
             </div>
         </div>
-    </AuthenticatedLayout>
 </template>
 
 <script setup>
-import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
-import {Head, Link} from '@inertiajs/vue3';
+import {Link} from '@inertiajs/vue3';
 import FileUpload from "@/Components/FileUpload.vue";
+import Header from "@/Components/Frontend/Header.vue";
 
 defineProps(
     {

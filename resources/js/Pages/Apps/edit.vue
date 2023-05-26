@@ -1,10 +1,6 @@
 <template>
     <Head title="New Project"/>
-    <AuthenticatedLayout>
-        <template #header>
-            <h2 class="font-semibold text-xl text-gray-800 leading-tight">New Project</h2>
-        </template>
-
+    <Header/>
         <div class="py-12">
             <div class="max-w-md mx-auto sm:px-6 lg:px-8 bg-white">
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
@@ -73,11 +69,10 @@
                 </div>
             </div>
         </div>
-    </AuthenticatedLayout>
 </template>
 
 <script setup>
-import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
+import Header from "@/Components/Frontend/Header.vue";
 import InputError from '@/Components/InputError.vue';
 import InputLabel from '@/Components/InputLabel.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';

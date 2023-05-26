@@ -19,8 +19,9 @@ class ApplicationsResource extends JsonResource
             'name' => $this->name,
             'cv' => asset('/storage/'. $this->cv),
             'cover_letter' => asset('/storage', $this->cover_letter),
-            'skill_id' => new SkillResource($this->whenLoaded('skill')),
-            'project_url' => new ProjectResource($this->whenLoaded('project')),
+            'skills' => $this->skills,
+            'project' => new ProjectResource($this->whenLoaded('project')),
+            'project_url' => $this->project->project_url,
         ];
     }
 }

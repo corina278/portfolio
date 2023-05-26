@@ -90,11 +90,9 @@
                 </div>
             </div>
         </div>
-    </AuthenticatedLayout>
 </template>
 
 <script setup>
-import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import Multiselect from '@vueform/multiselect';
 import InputError from '@/Components/InputError.vue';
 import InputLabel from '@/Components/InputLabel.vue';
@@ -103,22 +101,26 @@ import TextInput from '@/Components/TextInput.vue';
 import {Head, Link, router, useForm} from '@inertiajs/vue3';
 import {computed, onMounted} from "vue";
 import FileUpload from "@/Components/FileUpload.vue";
+import Header from "@/Components/Frontend/Header.vue";
+
 
 const props = defineProps({
-    skills: Array
+    skills: Array,
+    application: Object,
+    project: Object,
 })
 
 let form = useForm( {
-    name: '',
-    cv: null,
-    cover_letter: null,
-    skills: [],
-    project_url: "",
+    name: props.application?.name,
+    cv: props.application?.cv,
+    cover_letter: props.application?.cover_letter,
+    skills: props.application?.skills,
+    project_url: props.project?.project_url,
     errors: [],
 });
 
 const submit = () => {
-    router.post(`/applications/${props.applications.id}`,{
+    router.post(`/applications/${props.application.id}`,{
         _method: "put",
         name: form.name,
         cv: form.cv,
