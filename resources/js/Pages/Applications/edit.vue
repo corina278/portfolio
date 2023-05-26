@@ -122,7 +122,14 @@ let form = useForm( {
 });
 
 const submit = () => {
-    form.post(route('applications.store'));
+    router.post(`/applications/${props.applications.id}`,{
+        _method: "put",
+        name: form.name,
+        cv: form.cv,
+        cover_letter: form.cover_letter,
+        skills: form.skills,
+        project_url: form.project_url
+    })
 }
 
 const options = computed(() =>

@@ -43,7 +43,10 @@
                         </Popover>
 <!--                @TODO acelasi lucru ca la showApplications si pentru Skills Projects Applications-->
                         <button class="text-sm font-semibold leading-6 text-gray-900" @click="$emit('showApplications'); hideSections = true">Apply for jobs</button>
-                        <Popover v-if="!hideSections && $page.props.auth.user" class="relative">
+                        <button class="text-sm font-semibold leading-6 text-gray-900" @click="$emit('showSkillsIndex')">Skills</button>
+                        <button class="text-sm font-semibold leading-6 text-gray-900" @click="$emit('showProjectsIndex')">Projects</button>
+                        <button class="text-sm font-semibold leading-6 text-gray-900" @click="$emit('showApplicationsIndex')">Applications</button>
+                <Popover v-if="!hideSections && $page.props.auth.user" class="relative">
                             <PopoverButton class="flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900">
                                 {{ $page.props.auth.user.name }}
                                 <ChevronDownIcon class="h-5 w-5 flex-none text-gray-400" aria-hidden="true" />

@@ -35,6 +35,9 @@
                                         Cover Letter
                                     </th>
                                     <th scope="col" class="px-6 py-3">
+                                        Project URL
+                                    </th>
+                                    <th scope="col" class="px-6 py-3">
 
                                     </th>
                                 </tr>
@@ -56,6 +59,9 @@
                                     </td>
                                     <td class="px-6 py-4">
                                         <file-upload class="form-control" id="formFile" v-model="application.cover_letter"/>
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        <file-upload class="form-control" id="formFile" v-model="application.project_url"/>
                                     </td>
                                     <td class="px-6 py-4">
                                         <Link :href="route('applications.edit', application.id)"  class="font-medium text-blue-500 hover:text-blue-700 mr-2">Edit</Link>

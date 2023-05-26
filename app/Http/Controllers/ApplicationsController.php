@@ -48,20 +48,23 @@ class ApplicationsController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
+        $validated = $request->validate([
             'name' => ['required', 'min:3'],
-            'skill_id' => ['required'],
-            'project_id' => ['required']
+            'skills' => ['required', 'array'],
+            'cv'=> ['required', 'file'],
+            'cover_letter' => ['required', 'file'],
+            'project_id' => ['nullable', 'string']
         ]);
 
-        if($request->hasFile('image')){
-            $image = $request->file('image')->store('applications');
+        if($request->hasFile('cv') && $request->hasFile('cover_letter')){
+            $cv = $request->file('cv')->store('applications');
+            $cover_letter = $request->file('cover_letter')->store('applications');
             Applications::create([
-                'skill_id' => $request->skill_id,
-                'name' => $request->name,
-                'project_id' => $request->project_id,
-                'cv' => $request->cv,
-                'cover_letter' => $request->cover_letter,
+                'skills' => $validated['skills'],
+                'name' => $validated['name'],
+                'project_url' => $validated['project_url'],
+                'cv' => $validated['cv'],
+                'cover_letter' => $validated['cover_letter'],
             ]);
 
             return Redirect::route('Applications.index')->with('message', 'Application created successfully.');

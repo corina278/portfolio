@@ -12,7 +12,7 @@ class Applications extends Model implements Auditable
     use HasFactory;
     use AuditableTrait;
 
-    protected $fillable = ['skill_id', 'name', 'cv', 'cover_letter', 'project_url'];
+    protected $fillable = ['skills', 'name', 'cv', 'cover_letter', 'project_url'];
 
     public function skill() {
         return $this->belongsTo(Skill::class);

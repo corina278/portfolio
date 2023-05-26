@@ -10,12 +10,16 @@ import Skills from "@/Components/Sections/Skills.vue";
 import Services from "@/Components/Sections/Services.vue";
 import About from "@/Components/Sections/About.vue";
 // import Login from "@/Components/Pages/Auth/Login.vue";
+import SkillsIndex from "@/Pages/Skills/index.vue";
+import ProjectsIndex from "@/Pages/Projects/index.vue";
+import ApplicationsIndex from "@/Pages/Applications/index.vue";
 
 export default {
-    components: {About, Services, Skills, Promote, Portofolio, Hero, ContactMe, Header, Applications, Footer},
+    components: {SkillsIndex, ProjectsIndex, ApplicationsIndex, About, Services, Skills, Promote, Portofolio, Hero, ContactMe, Header, Applications, Footer},
     props: {
         skills: Object,
         projects: Object,
+        applications: Object,
     },
     data() {
         return {
@@ -27,6 +31,9 @@ export default {
             showPortofolio: false,
             showServices: false,
             showContactMe: false,
+            showSkillsIndex: false,
+            showProjectsIndex: false,
+            showApplicationsIndex: false
         }
     },
     methods: {
@@ -41,15 +48,31 @@ export default {
         <Header
             @showApplications="showApplications = true"
             @hideApplications="showApplications = false"
+            @showSkillsIndex="showSkillsIndex = true"
+            @showProjectsIndex="showProjectsIndex = true"
+            @showApplicationsIndex="showApplicationsIndex = true"
             @hideSections="showApplications = false"
+            />
+        <!--            @hideSkillsIndex="showSkillsIndex = false"-->
+<!--            @hideProjectsIndex="showProjectsIndex = false"-->
+<!--            @hideApplicationsIndex="showApplicationsIndex = false"-->
+        <SkillsIndex v-if="showSkillsIndex"
+                     :skills="skills"
+        />
+        <!--                     @hideSkillsIndex="showSkillsIndex=false"-->
+        <ProjectsIndex v-if="showProjectsIndex"
+                     @hideProjectsIndex="showProjectsIndex=false"
+                     :projects="projects"
+        />
+        <ApplicationsIndex v-if="showApplicationsIndex"
+                     @hideApplicationsIndex="showApplicationsIndex=false"
+                     :applications="applications"
         />
         <Applications v-if="showApplications"
                       @hideApplications="showApplications = false"
                       :skills="skills"
                       :projects="projects"
         />
-
-        <!-- o metoda in care sa verific daca userul e logat? -->
 
         <!--        Hero primary -->
         <Hero v-if="!showApplications"/>

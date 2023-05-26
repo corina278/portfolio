@@ -12,13 +12,17 @@
                         <form class="p-4" @submit.prevent="submit">
                             <div>
                                 <InputLabel for="skill" value="Skill" />
-                                <select v-model="form.skill_id"
-                                        id="skill_id"
-                                        name="skill_id"
-                                        class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">
-                                    <option v-for="skill in skills" :key="skill.id" :value="skill.id">{{skill.name}}</option>
-                                    <InputError class="mt-2" :message="$page.props.errors.skill_id" />
-                                </select>
+                                <Multiselect
+                                    id="multiselect"
+                                    class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md"
+                                    :options="options"
+                                    v-model="form.skills"
+                                    :value="form.skills"
+                                    mode="multiple"
+                                    placeholder="Choose skills"
+                                    :hide-selected="false"/>
+                                <!--                                    <option v-for="skill in skills" :key="skill.id" :value="skill.id">{{skill.name}}</option>-->
+                                <InputError class="mt-2" :message="form.errors.skills" />
                             </div>
 
                             <div>
@@ -84,6 +88,8 @@ import PrimaryButton from '@/Components/PrimaryButton.vue';
 import TextInput from '@/Components/TextInput.vue';
 import {Head, Link, useForm} from '@inertiajs/vue3';
 import {router} from "@inertiajs/vue3";
+import Multiselect from '@vueform/multiselect';
+import {computed} from "vue";
 
 const props = defineProps({
     skills: Array,
@@ -93,8 +99,9 @@ const props = defineProps({
 const form = useForm({
     name: props.project?.name,
     image: null,
-    skill_id: props.project?.skill_id,
-    project_url: props.project?.project_url
+    skills: [],
+    project_url: props.project?.project_url,
+    errors: [],
 });
 
 const submit = () => {
@@ -102,8 +109,13 @@ const submit = () => {
         _method: "put",
         name: form.name,
         image: form.image,
-        skill_id: form.skill_id,
+        skills: form.skills,
         project_url: form.project_url
 })
 }
+const options = computed(() =>
+    props.skills.map(item => {
+        return item.name
+    })
+)
 </script>
