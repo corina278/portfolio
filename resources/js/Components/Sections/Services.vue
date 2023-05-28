@@ -19,10 +19,11 @@
       }"
     >
       <div class="flex flex-col items-center text-center">
-        <h2 class="section-title">What I do for clients</h2>
+        <h2 class="section-title">What do we offer?</h2>
         <p class="subtitle">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga veniam
-          labore nisium illum cupiditate reiciendis a numquam
+          Why choosing us? We are the first platform to offer jobs mostly for people starting their adulthood,
+            facing difficulties in getting an entry-level job. We tried to make it easier for each and every one
+            of you to find you future career. We seek for extending ourselves in multiple domains, like:
         </p>
       </div>
       <div class="grid lg:grid-cols-4 gap-8">
@@ -55,11 +56,24 @@
               />
             </svg>
           </div>
-          <h4 class="text-xl font-medium mb-2">Web Design</h4>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio
-            perferendis volm quibusdam ullam qui dolore.
-          </p>
+          <h4 class="text-xl font-medium mb-2">Web Design & Software development</h4>
+          <ol>
+              <li>
+                  Junior Web Designer
+              </li>
+              <li>
+                  Junior Fullstack
+              </li>
+              <li>
+                  Junior UI Designer
+              </li>
+              <li>
+                  Junior Java Developer
+              </li>
+              <li>
+                  Junior UX Designer...
+              </li>
+          </ol>
         </div>
         <div class="bg-light-tail-100 dark:bg-dark-navy-500 p-6 rounded-2xl">
           <div
@@ -95,11 +109,24 @@
               />
             </svg>
           </div>
-          <h4 class="text-xl font-medium mb-2">Web Development</h4>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio
-            perferendis volm quibusdam ullam qui dolore.
-          </p>
+          <h4 class="text-xl font-medium mb-2">Construction & Building</h4>
+            <ol>
+                <li>
+                    Meter Reader - entry level
+                </li>
+                <li>
+                    Welder
+                </li>
+                <li>
+                    Laborer
+                </li>
+                <li>
+                    Roofers
+                </li>
+                <li>
+                    Process Engineer...
+                </li>
+            </ol>
         </div>
         <div class="bg-light-tail-100 dark:bg-dark-navy-500 p-6 rounded-2xl">
           <div
@@ -130,11 +157,24 @@
               />
             </svg>
           </div>
-          <h4 class="text-xl font-medium mb-2">Branding</h4>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio
-            perferendis volm quibusdam ullam qui dolore.
-          </p>
+          <h4 class="text-xl font-medium mb-2">Chemestry & Lab work</h4>
+            <ol>
+                <li>
+                    Chemist I
+                </li>
+                <li>
+                    Scientist
+                </li>
+                <li>
+                    Entry-Level Environmental Chemist
+                </li>
+                <li>
+                    Research Chemist
+                </li>
+                <li>
+                    Geologist...
+                </li>
+            </ol>
         </div>
         <div class="bg-light-tail-100 dark:bg-dark-navy-500 p-6 rounded-2xl">
           <div
@@ -165,11 +205,24 @@
               />
             </svg>
           </div>
-          <h4 class="text-xl font-medium mb-2">SEO</h4>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio
-            perferendis volm quibusdam ullam qui dolore.
-          </p>
+          <h4 class="text-xl font-medium mb-2">Marketing & Sales</h4>
+            <ol>
+                <li>
+                    Marketing Sales Representative
+                </li>
+                <li>
+                    Digital Media Apprentice
+                </li>
+                <li>
+                    Marketing Copywriter
+                </li>
+                <li>
+                    Call Center Sales Representative
+                </li>
+                <li>
+                    Pharmaceutical Sales...
+                </li>
+            </ol>
         </div>
       </div>
     </div>

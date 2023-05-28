@@ -14,8 +14,8 @@
         >
             <div class="flex flex-col xl:flex-row gap-24">
                 <img
-                    class="object-cover h-full w-[566px] md:mx-auto lg:mx-0 rounded-2xl"
-                    src="http://portfolio.test/img/about.jpeg"
+                    class="object-cover h-[450px] w-[350px] md:mx-auto lg:mx-0 rounded-2xl"
+                    src="http://portfolio.test/img/aboutme.jpg"
                     alt="about"
                 />
                 <div
@@ -30,16 +30,13 @@
                         <h2 class="text-3xl lg:text-4xl font-medium lg:font-extrabold mb-3">
                             About Me
                         </h2>
-                        <P class="mb-4 text-accent">Freelance frontend Web developer</P>
+                        <P class="mb-4 text-accent">Job Application Platform - InTouch</P>
                         <hr class="mb-8 opacity-90 dark:opacity-5" />
                         <p class="mb-8">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit tempore
-                            earum dolorum quo consequatur rem nihil hic ducimus rerum soluta
-                            neque harum velit molestiae dignissimos distinctio dolorum nisi
-                            labore culpa nihil. <br />
+                            Job application platform designed by one of you after facing the difficulties of
+                            adulthood when tying to apply for the first job and having no experience at all. <br />
                             <br />
-                            Qui doloremque quod sit accusantium unde totam inventore
-                            cupiditate ratione esse maxime eum recusandae ducimus.
+                            Designed mostly for entry-level & junior jobs.
                         </p>
                     </div>
                     <a href="#contact" class="btn btn-md bg-accent text-light-tail-100">

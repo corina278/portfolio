@@ -22,13 +22,13 @@
             >
                 <span class="block">Ready to dive in?</span>
                 <span class="block text-dark-primary dark:text-white"
-                >Laravel 9 Admin Panel - Learn Roles and Permissions.</span
+                >Start applying now!</span
                 >
             </h2>
             <div class="mt-8 flex lg:mt-0 lg:flex-shrink-0">
                 <div class="inline-flex rounded-md shadow">
                     <a
-                        href="https://www.udemy.com/course/laravel-9-admin-panel-learn-roles-and-permissions/"
+                        :href="route('applications-jobs')"
                         class="
               inline-flex
               items-center
@@ -46,7 +46,7 @@
               hover:bg-light-primary
               dark:hover:bg-dark-primary
             "
-                    >Get the Course</a
+                    >Apply here</a
                     >
                 </div>
             </div>

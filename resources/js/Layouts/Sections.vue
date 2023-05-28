@@ -47,23 +47,6 @@ export default {
             @showApplications="showApplications = true"
             @hideApplications="showApplications = false"
         />
-<!--        <SkillsIndex v-if="showSkillsIndex"-->
-<!--                     :skills="skills"-->
-<!--        />-->
-<!--        <ProjectsIndex v-if="showProjectsIndex"-->
-<!--                     @hideProjectsIndex="showProjectsIndex=false"-->
-<!--                     :projects="projects"-->
-<!--        />-->
-<!--        <ApplicationsIndex v-if="   showApplicationsIndex"-->
-<!--                     @hideApplicationsIndex="showApplicationsIndex=false"-->
-<!--                     :applications="applications"-->
-<!--        />-->
-<!--        <Applications v-if="showApplications"-->
-<!--                      @hideApplications="showApplications = false"-->
-<!--                      :skills="skills"-->
-<!--                      :projects="projects"-->
-<!--        />-->
-
         <!--        Hero primary -->
         <Hero v-if="!showApplications"/>
         <!--        Promote tail-100 -->
