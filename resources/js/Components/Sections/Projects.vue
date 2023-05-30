@@ -18,8 +18,8 @@ export default {
 </script>
 
 <template>
-    <div class="container mx-auto overflow-auto">
-        <nav class="mb-12 border-b-2 border-light-tail-100 dark:text-dark-navy-100">
+    <div class="container mx-auto">
+        <nav class="mb-12 border-b-2 border-light-tail-100 dark:text-dark-navy-100 overflow-auto">
             <ul class="flex flex-col lg:flex-row justify-evenly items-center">
                 <li class="cursor-pointer capitalize m-4">
                     <button class="flex text-center px-4 py-2 hover:text-light-tail-500 dark:text-dark-navy-100">All</button>

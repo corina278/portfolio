@@ -6,12 +6,14 @@ use App\Http\Resources\ApplicationsResource;
 use App\Http\Resources\ProjectResource;
 use App\Http\Resources\SkillResource;
 use App\Models\Applications;
+use App\Models\File;
 use App\Models\Project;
 use App\Models\Skill;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
+use App\Http\Controllers\FileUpload;
 
 class ApplicationsController extends Controller
 {
@@ -26,13 +28,7 @@ class ApplicationsController extends Controller
         return Inertia::render('Applications/index', compact('applications'));
     }
 
-    public function download(Request $request)
-    {
-        // @TODO add this to Storage controller
-        // call this with {url : application.cv}
-        // in Vue, gotta do smt like window.redirect('download', {url: application.cv});
-        Storage::download($request->url);
-    }
+
 
     public function applicationsJobs()
     {
@@ -69,14 +65,14 @@ class ApplicationsController extends Controller
         $validated = $request->validate([
             'skills' => ['required'],
             'name' => ['required', 'min:3'],
-            'cv'=> ['required', 'file'],
-            'cover_letter' => ['required', 'file'],
+            'cv'=> 'required|mimes:csv,txt,xlx,xls,pdf,doc,docx|max:2048',
+            'cover_letter' => 'required|mimes:csv,txt,xlx,xls,pdf,doc,docx|max:2048',
             'project_id' => ['required', 'int'],
         ]);
         $route = auth()->user()->is_recruiter ? 'applications.index' : 'welcome';
         if($request->hasFile('cv') && $request->hasFile('cover_letter')){
-            $cv = $request->file('cv')->store('applications');
-            $cover_letter = $request->file('cover_letter')->store('applications');
+            $cv = $request->file('cv')->storeAs('applications', 'CV-' . $request->file('cv')->getClientOriginalName());
+            $cover_letter = $request->file('cover_letter')->storeAs('applications', 'Cover Letter-' . $request->file('cover_letter')->getClientOriginalName());
 
             $application = Applications::create([
                 'skills' => $validated['skills'],

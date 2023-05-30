@@ -1,5 +1,5 @@
 <template>
-    <Header/>
+    <Header :hide-sections="true"/>
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
@@ -54,10 +54,10 @@
                                         </ul>
                                     </td>
                                     <td class="px-6 py-4">
-                                        <file-upload class="form-control" id="formFile" v-model="application.cv"/>
+                                        <i class="fa fa-download" @click="downloadFile(application.cv)" aria-hidden="true"></i>
                                     </td>
                                     <td class="px-6 py-4">
-                                        <file-upload class="form-control" id="formFile" v-model="application.cover_letter"/>
+                                        <i class="fa fa-download" @click="downloadFile(application.cover_letter)" aria-hidden="true"></i>
                                     </td>
                                     <td class="px-6 py-4">
                                         {{application.project_url}}
@@ -87,4 +87,10 @@ defineProps(
         applications: Object,
     }
 );
+
+function downloadFile(url) {
+    window.location.assign(url);
+}
 </script>
+
+<style src="../../../css/font-awesome-4.7.0/css/font-awesome.css"></style>

@@ -88,7 +88,7 @@ class ProjectController extends Controller
         $image = $project->image;
         $request->validate([
             'name' => ['required', 'min:3'],
-            'skill_id' => ['required']
+            'skills' => ['required']
         ]);
         if($request->hasFile('image')){
             Storage::delete($project->image);
@@ -97,7 +97,7 @@ class ProjectController extends Controller
 
         $project->update([
             'name' => $request->name,
-            'skill_id' => $request->skill_id,
+            'skills' => $request->skills,
             'project_url' => $request->project_url,
             'image' => $image
         ]);

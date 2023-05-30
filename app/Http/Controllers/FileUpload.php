@@ -10,10 +10,11 @@ class FileUpload extends Controller
     public function createForm(){
         return view('file-upload');
     }
-    public function fileUpload(Request $req){
+    public static function fileUpload(Request $req){
         $req->validate([
-            'file' => 'required|mimes:csv,txt,xlx,xls,pdf|max:2048'
+            'file' => 'required|mimes:csv,txt,xlx,xls,pdf,doc,docx|max:2048'
         ]);
+//        dd($req->file);
         $fileModel = new File;
         if($req->file()) {
             $fileName = time().'_'.$req->file->getClientOriginalName();

@@ -1,6 +1,6 @@
 <template>
     <Head title="Projects Index"/>
-    <Header/>
+    <Header :hide-sections="true"/>
 
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
@@ -43,7 +43,11 @@
                                         {{ project.name }}
                                     </td>
                                     <td class="px-6 py-4">
-                                        {{ project.skills }}
+                                        <ul>
+                                            <li v-for="skill in project.skills">
+                                                {{ skill }}
+                                            </li>
+                                        </ul>
                                     </td>
                                     <td class="px-6 py-4">
                                         <img :src="project.image" class="w-14 h-14 rounded-full"/>

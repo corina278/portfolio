@@ -18,7 +18,7 @@ class ApplicationsResource extends JsonResource
             'id' => $this->id,
             'name' => $this->name,
             'cv' => asset('/storage/'. $this->cv),
-            'cover_letter' => asset('/storage', $this->cover_letter),
+            'cover_letter' => asset('/storage/'. $this->cover_letter),
             'skills' => $this->skills,
             'project' => new ProjectResource($this->whenLoaded('project')),
             'project_url' => $this->project->project_url,
