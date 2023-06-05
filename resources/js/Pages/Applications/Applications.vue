@@ -50,6 +50,13 @@ let form = useForm( {
     errors: [],
 });
 
+const submit = () => {
+    form.post(route('applications.store'), {
+        onSuccess: () => form.reset(),
+    });
+};
+
+
 const options = computed(() =>
     props.skills.data.map(item => {
         return item.name
