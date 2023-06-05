@@ -1,7 +1,10 @@
-<script setup>
+x<script setup>
+import {onMounted} from "vue";
+
 defineProps({
     project: Object,
 });
+
 </script>
 
 

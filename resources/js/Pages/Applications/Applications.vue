@@ -1,38 +1,6 @@
-<script>
-import Project from "@/Components/Sections/Project.vue";
-import FileUpload from "@/Components/FileUpload.vue";
-import ProjectApplications from "@/Components/Frontend/ProjectApplications.vue";
-import InputError from "@/Components/InputError.vue";
+<!--<script>-->
 
-export default {
-    // props: {
-    //     projects: {type: Object},
-    //     skills: {type: Object}
-    // },
-    components: {InputError, ProjectApplications, FileUpload, Project},
-    data() {
-        return {
-            file1: null,
-            file2: null,
-            form: {
-                file: null,
-                selectedProject: null
-            }
-        }
-
-    },
-    methods: {
-        getsKillUrl(skill) {
-            return 'projects?skill=' +   skill
-        },
-        submit() {
-            // axios.post('/url', this.form).then(data => {
-            //     console.log(data);
-            // })
-        }
-    }
-}
-</script>
+<!--</script>-->
 <script setup>
 import Multiselect from '@vueform/multiselect';
 import {useForm} from "@inertiajs/vue3";
@@ -41,6 +9,31 @@ import {computed} from "vue";
 import "@vueform/multiselect/themes/default.css";
 import PrimaryButton from "@/Components/PrimaryButton.vue";
 import Header from "@/Components/Frontend/Header.vue";
+import Project from "@/Components/Sections/Project.vue";
+import FileUpload from "@/Components/FileUpload.vue";
+import ProjectApplications from "@/Components/Frontend/ProjectApplications.vue";
+import InputError from "@/Components/InputError.vue";
+import { Carousel, Slide } from 'vue3-carousel';
+import 'vue3-carousel/dist/carousel.css';
+
+import { ref, watch } from 'vue';
+import axios from 'axios';
+
+const file1 = ref(null);
+const file2 = ref(null);
+const currentSlide = ref(0);
+
+watch(currentSlide, (newSlide) => {
+    form.selectedProject = props.projects.data[newSlide];
+    form.project_url = form.selectedProject.project_url;
+    form.project_id = form.selectedProject.id;
+});
+
+// const slideTo = (project) => {
+//     console.log('slideTo');
+//     // Implementation of slideTo method goes here
+// };
+
 
 const props = defineProps({
     skills: Array,
@@ -63,17 +56,17 @@ const options = computed(() =>
     })
 )
 
-const submit = () => {
-    form.post(route('applications.store'), {
-        onSuccess: () => form.reset(),
-    });
-};
+// const submit = () => {
+//     form.post(route('applications.store'), {
+//         onSuccess: () => form.reset(),
+//     });
+// };
 
-function clickProject(project) {
-    form.selectedProject = project
-    form.project_url = project.project_url
-    form.project_id = project.id
-}
+// function clickProject(project) {
+//     form.selectedProject = project
+//     form.project_url = project.project_url
+//     form.project_id = project.id
+// }
 
 </script>
 
@@ -82,22 +75,49 @@ function clickProject(project) {
     <Header :hide-sections="true"/>
     <div class="container mx-auto">
         <nav class="mb-24 border-b-2 border-light-tail-100 dark:text-dark-navy-100"/>
-        <section class="grid gap-y-12 lg:grid-cols-3 lg:gap-8">
-            <div class="project" v-for="project in projects.data"
-                 :class="form.selectedProject === project ? 'project-wrapper is-selected' : 'project-wrapper'"
-                 @click="clickProject(project)"
-            >
-                <ProjectApplications :key="project.id" :hideLink="true" :project="project" />
-            </div>
+<!--        <section class="grid gap-y-12 lg:grid-cols-3 lg:gap-8">-->
+<!--            <div class="project" v-for="project in projects.data"-->
+<!--                 :class="form.selectedProject === project ? 'project-wrapper is-selected' : 'project-wrapper'"-->
+<!--                 @click="clickProject(project)"-->
+<!--            >-->
+<!--                <ProjectApplications :key="project.id" :hideLink="true" :project="project" />-->
+<!--            </div>-->
+<!--            {{projects.data.length - 1}}-->
+<!--            <span v-for="i in (projects.data.length)">-->
+<!--                I: {{projects.data[i-1].name}}-->
+<!--            </span>-->
+            <Carousel id="gallery" :items-to-show="1" :wrap-around="false" v-model="currentSlide">
+                <Slide v-for="project in projects.data" :key="project">
+                    <div class="carousel__item">
+                        <ProjectApplications :key="project" :hideLink="true" :project="project" />
+                    </div>
+                </Slide>
+            </Carousel>
 
-        </section>
+            <Carousel
+                id="thumbnails"
+                :items-to-show="4"
+                :wrap-around="true"
+                v-model="currentSlide"
+                ref="carousel"
+            >
+<!--                {{ projects.data[0]}}-->
+                <Slide v-for="project in projects.data" :key="project" @click="slideTo(project)">
+                    <div class="carousel__item" @click="slideTo(project)">
+                        <ProjectApplications :key="project" :hideLink="true" @click="slideTo(project)" :project="project" />
+<!--                        {{project.name}}-->
+                    </div>
+                </Slide>
+            </Carousel>
+
+<!--        </section>-->
     </div>
 
     <div class="py-12">
         <div class="max-w-md mx-auto p-6 sm:px-6 lg:px-8 bg-light-primary">
             <div class="bg-light-secondary overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
-                    <form class="p-4" @submit.prevent="submit">
+                    <form class="p-4" @submit.prevent="submit" :key="form.selectedProject">
                         <div class="mb-3">
                             <div>
                                 <InputLabel for="skill" value="Skill" />
@@ -111,7 +131,7 @@ function clickProject(project) {
                                     placeholder="Choose skills"
                                     :hide-selected="false"/>
                                 <!--                                    <option v-for="skill in skills" :key="skill.id" :value="skill.id">{{skill.name}}</option>-->
-                                <InputError class="mt-2" :message="form.errors.skills" />
+<!--                                <InputError class="mt-2" :message="form.errors.skills" />-->
                             </div>
                             <div class="mb-3 p-5 text-gray-900">
                                 <label class="form-label" for="name">Name:</label>

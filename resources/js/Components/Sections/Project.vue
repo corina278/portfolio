@@ -7,8 +7,7 @@ defineProps({
 
 
 <template>
-    <Link
-        :href="project.project_url"
+    <div
         class="group flex flex-col items-center text-center cursor-pointer"
         v-motion
         :initial="{
@@ -42,5 +41,5 @@ defineProps({
         >
             {{ project.name }}
         </h3>
-    </Link>
+    </div>
 </template>

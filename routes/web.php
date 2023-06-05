@@ -29,6 +29,7 @@ Route::get('/get-token-whatever', [TokenController::class, 'getToken']);
 //});
 
 Route::get('/', [\App\Http\Controllers\WelcomeController::class, 'welcome'])->name('welcome');
+Route::post('/contact', [\App\Http\Controllers\ContactController::class, 'send'])->name('contact-send');
 //Route::get('/dashboard', [\App\Http\Controllers\WelcomeController::class, 'welcome'])->name('welcome');
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

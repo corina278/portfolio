@@ -7,7 +7,7 @@ const showMessage = ref(false);
 const form = useForm({
   name: "",
   email: "",
-  body: "",
+  message: "",
 });
 
 function setShowMessage(value) {
@@ -21,7 +21,7 @@ function cleanForm() {
 }
 
 const submit = () => {
-  form.post(route("contact"), {
+  form.post(route("contact-send"), {
     preserveScroll: true,
     onSuccess: () => cleanForm(),
   });
@@ -177,13 +177,13 @@ const submit = () => {
             </div>
           </div>
           <textarea
-            v-model="form.body"
+            v-model="form.message"
             class="textarea"
             placeholder="Your Message"
             spellcheck="false"
           ></textarea>
-          <span v-if="form.errors.body" class="text-sm m-2 text-red-400">{{
-            form.errors.body
+          <span v-if="form.errors.message" class="text-sm m-2 text-red-400">{{
+            form.errors.message
           }}</span>
 
           <button class="btn btn-lg bg-accent hover:bg-secondary text-white">
