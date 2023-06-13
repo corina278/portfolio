@@ -80,7 +80,7 @@ const options = computed(() =>
 <template>
     <Head title="Apply for jobs"/>
     <Header :hide-sections="true"/>
-    <div class="container mx-auto">
+    <div class="container mx-auto bg-amber-50">
         <nav class="mb-24 border-b-2 border-light-tail-100 dark:text-dark-navy-100"/>
 <!--        <section class="grid gap-y-12 lg:grid-cols-3 lg:gap-8">-->
 <!--            <div class="project" v-for="project in projects.data"-->
@@ -120,17 +120,17 @@ const options = computed(() =>
 <!--        </section>-->
     </div>
 
-    <div class="py-12">
-        <div class="max-w-md mx-auto p-6 sm:px-6 lg:px-8 bg-light-primary">
+    <div class="py-12 bg-amber-50">
+        <div class="max-w-md mx-auto p-6 sm:px-6 lg:px-8 bg-light-primary rounded-2xl">
             <div class="bg-light-secondary overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
-                    <form class="p-4" @submit.prevent="submit" :key="form.selectedProject">
+                    <form class="p-4 rounded-l" @submit.prevent="submit" :key="form.selectedProject">
                         <div class="mb-3">
-                            <div>
-                                <InputLabel for="skill" value="Skill" />
+                            <div class="mb-3 p-5 text-gray-900">
+                                <InputLabel class="form-label" for="skill" value="Skill:" />
                                 <Multiselect
                                     id="multiselect"
-                                    class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md"
+                                    class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm mt-1 block w-full"
                                     :options="options"
                                     v-model="form.skills"
                                     :value="form.skills"
@@ -142,7 +142,7 @@ const options = computed(() =>
                             </div>
                             <div class="mb-3 p-5 text-gray-900">
                                 <label class="form-label" for="name">Name:</label>
-                                <input class="form-control" type="text" id="name" v-model="form.name">
+                                <input class="form-control border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm mt-1 block w-full" type="text" id="name" v-model="form.name">
                             </div>
 
                             <div class="mb-3 p-5 text-gray-900">
@@ -151,13 +151,13 @@ const options = computed(() =>
                             </div>
 
                             <div class="mb-3 p-5 text-gray-900">
-                                <label for="formFile" class="form-label">Cover letter: </label>
-                                <file-upload class="form-control" id="formFile" v-model="form.cover_letter"/>
+                                <label for="formFile" class="form-label ">Cover letter: </label>
+                                <file-upload class="form-control " id="formFile" v-model="form.cover_letter"/>
                             </div>
 
                             <div class="mb-3 p-5 text-gray-900">
                                 <label for="project_url" class="form-label">Project link: </label>
-                                <input class="form-control" type="text" id="project_url" v-model="form.project_url">
+                                <input class="form-control border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm mt-1 block w-full" type="text" id="project_url" v-model="form.project_url">
                             </div>
                             <div class="flex items-center justify-end mt-4">
 

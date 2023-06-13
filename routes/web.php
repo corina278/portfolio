@@ -38,6 +38,13 @@ Route::middleware('auth')->group(function () {
     Route::resource('/skills', \App\Http\Controllers\SkillController::class);
     Route::resource('/projects',\App\Http\Controllers\ProjectController::class);
     Route::resource('/applications',\App\Http\Controllers\ApplicationsController::class);
+//    Route::resource('/reports',\App\Http\Controllers\ReportsController::class);
+    Route::get('/skills-report', [\App\Http\Controllers\ReportsController::class, 'skillsReport'])->name('Reports.SkillsReport');
+    Route::get('/reports/get-skills', [\App\Http\Controllers\ReportsController::class, 'getSkills']);
+    Route::get('/projects-report', [\App\Http\Controllers\ReportsController::class, 'projectReport'])->name('Reports.ProjectsReport');
+    Route::get('/reports/get-projects', [\App\Http\Controllers\ReportsController::class, 'getProjects']);
+    Route::get('/applications-report', [\App\Http\Controllers\ReportsController::class, 'applicationsReport'])->name('Reports.ApplicationsReport');
+    Route::get('/reports/get-applications', [\App\Http\Controllers\ReportsController::class, 'getApplications']);
     Route::get('/applications-jobs',[\App\Http\Controllers\ApplicationsController::class, 'applicationsJobs'])->name('applications-jobs');
     Route::get('/download',[\App\Http\Controllers\StorageController::class, 'download']);
 

@@ -22,6 +22,7 @@ class ApplicationsResource extends JsonResource
             'skills' => $this->skills,
             'project' => new ProjectResource($this->whenLoaded('project')),
             'project_url' => $this->project->project_url,
+            'updated_at' => date_format($this->updated_at,'Y-m-d'),
         ];
     }
 }

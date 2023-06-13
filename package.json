@@ -24,11 +24,16 @@
         "@vueform/multiselect": "^2.6.2",
         "bootstrap": "^5.2.3",
         "bootstrap-vue": "^2.23.1",
+        "moment": "^2.29.4",
         "owl.carousel": "^2.3.4",
         "portal-vue": "^3.0.0",
+        "vue-chart": "^2.0.0",
         "vue-loader": "^17.1.0",
         "vue-multi-select": "^4.6.0",
         "vue-multiselect": "^2.1.7",
-        "vue3-carousel": "^0.3.1"
+        "vue-router": "^4.2.2",
+        "vue3-carousel": "^0.3.1",
+        "vue3-datepicker": "^0.4.0",
+        "vuetify": "^3.3.3"
     }
 }

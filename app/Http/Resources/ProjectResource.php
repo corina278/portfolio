@@ -20,6 +20,7 @@ class ProjectResource extends JsonResource
             'image' => asset('/storage/'. $this->image),
             'skills' => $this->skills,
             'project_url' => $this->project_url,
+            'updated_at' => date_format($this->updated_at,'Y-m-d'),
         ];
     }
 }
