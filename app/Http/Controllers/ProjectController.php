@@ -24,6 +24,11 @@ class ProjectController extends Controller
         return Inertia::render('Projects/index', compact('projects'));
     }
 
+    public function getProjects()
+    {
+        return ProjectResource::collection(Project::all());
+    }
+
     /**
      * Show the form for creating a new resource.
      *
