@@ -1,18 +1,18 @@
 <template>
     <header class="bg-light-primary header">
-        <nav class="bg-light-primary mx-auto flex fixed items-center justify-between p-6 lg:px-8 w-full sm:px-4 rounded"
+        <nav class="bg-light-primary mx-auto flex fixed items-center justify-between p-2  w-full sm:px-4 rounded"
                 :class="{
             'bg-light-primary dark:bg-dark-primary': scrollBg,
             'bg-white dark:bg-slate-800': !scrollBg,
             } " aria-label="Global">
                 <div class="container flex flex-wrap justify-between items-center mx-auto lg:flex-1">
-<!--                    <button class="flex items-center" @click="$emit('hideApplications'); hideSections = false">-->
                     <Link class="flex items-center" :href="route('welcome')">
-                        <img class="h-6 mr-3 sm:h-9" src="http://portfolio.test/img/PaperTown.png" alt="" />
+                        <img style="height: 70px" class=" mr-3 sm:h-9" src="http://portfolio.test/img/InTouch.png" alt="" />
+                        <h1 class="text-l">InTouch</h1>
                     </Link>
                     </div>
                     <div class="flex lg:hidden">
-                        <button type="button" class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700" @click="mobileMenuOpen = true">
+                        <button type="button" class="-m-2.5 inline-flex items-center justify-center rounded-3xl p-2.5 text-gray-700" @click="mobileMenuOpen = true">
                             <span class="sr-only">Open main menu</span>
                             <Bars3Icon class="h-6 w-6" aria-hidden="true" />
                         </button>
@@ -99,42 +99,8 @@
                         <a v-if="!$page.props.auth.user" :href="route('login')" class="text-sm font-semibold leading-6 text-gray-900">Login</a>
                     </PopoverGroup>
 
-            <div class="hidden lg:flex lg:flex-1 lg:justify-end"></div>
+                    <div class="hidden lg:flex lg:flex-1 lg:justify-end"></div>
                 </nav>
-<!--                <Dialog as="div" class="lg:hidden" @close="mobileMenuOpen = false" :open="mobileMenuOpen">-->
-<!--                    <div class="fixed inset-0 z-10" />-->
-<!--                    <DialogPanel class="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">-->
-<!--                        <div class="flex items-center justify-between">-->
-<!--                            <a href="#" class="-m-1.5 p-1.5">-->
-<!--                                <span class="sr-only">Your Company</span>-->
-<!--                                <img class="h-8 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600" alt="" />-->
-<!--                            </a>-->
-<!--                            <button type="button" class="-m-2.5 rounded-md p-2.5 text-gray-700" @click="mobileMenuOpen = false">-->
-<!--                                <span class="sr-only">Close menu</span>-->
-<!--                                <XMarkIcon class="h-6 w-6" aria-hidden="true" />-->
-<!--                            </button>-->
-<!--                        </div>-->
-<!--                        <div class="mt-6 flow-root">-->
-<!--                            <div class="-my-6 divide-y divide-gray-500/10">-->
-<!--                                <div class="space-y-2 py-6">-->
-<!--                                    <Disclosure as="div" class="-mx-3" v-slot="{ open }">-->
-<!--                                        <DisclosureButton class="flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 text-base font-semibold leading-7 hover:bg-gray-50">-->
-<!--                                            Sections-->
-<!--                                            <ChevronDownIcon :class="[open ? 'rotate-180' : '', 'h-5 w-5 flex-none']" aria-hidden="true" />-->
-<!--                                        </DisclosureButton>-->
-<!--                                        <DisclosurePanel class="mt-2 space-y-2">-->
-<!--                                            <DisclosureButton v-for="item in [...navigations]" :key="item.name" as="a" :href="item.href" class="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 text-gray-900 hover:bg-gray-50">{{ item.name }}</DisclosureButton>-->
-<!--                                        </DisclosurePanel>-->
-<!--                                    </Disclosure>-->
-<!--                                </div>-->
-<!--                                <div class="py-6">-->
-<!--&lt;!&ndash;                                    @TODO replace this, will cause errors&ndash;&gt;-->
-<!--                                    <a href="Applications.vue" class="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Apply for jobs</a>-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </DialogPanel>-->
-<!--                </Dialog>-->
             </header>
         </template>
 

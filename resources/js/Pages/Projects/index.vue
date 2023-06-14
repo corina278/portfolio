@@ -1,10 +1,9 @@
 <template>
     <Head title="Projects Index"/>
     <Header :hide-sections="true"/>
-
-        <div class="py-12">
-            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+        <div class="py-12 bg-amber-50">
+            <div  style="padding-top: 70px" class="max-w-7xl mx-auto sm:px-6 lg:p-8 bg-light-primary rounded-xl">
+                <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg bg-light-secondary">
                     <div class="p-6 text-gray-900">
                         <div class="flex justify-end m-2 p-2">
                             <Link :href="route('projects.create')"
@@ -64,11 +63,13 @@
                 </div>
             </div>
         </div>
+    <Footer/>
 </template>
 
 <script setup>
 import Header from "@/Components/Frontend/Header.vue";
 import {Head, Link} from '@inertiajs/vue3';
+import Footer from "@/Components/Frontend/Footer.vue";
 
 defineProps(
     {

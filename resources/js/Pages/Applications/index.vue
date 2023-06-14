@@ -1,8 +1,8 @@
 <template>
     <Header :hide-sections="true"/>
-        <div class="py-12">
-            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+        <div class="py-12 bg-amber-50">
+            <div  style="padding-top: 70px" class="max-w-7xl mx-auto sm:px-6 lg:p-8 bg-light-primary rounded-xl">
+                <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg bg-light-secondary">
                     <div class="p-6 text-gray-900">
                         <div class="flex justify-end m-2 p-2">
                             <Link :href="route('applications.create')"
@@ -31,9 +31,6 @@
                                     </th>
                                     <th scope="col" class="px-6 py-3">
                                         Project URL
-                                    </th>
-                                    <th scope="col" class="px-6 py-3">
-
                                     </th>
                                 </tr>
                                 </thead>
@@ -74,12 +71,14 @@
                 </div>
             </div>
         </div>
+    <Footer/>
 </template>
 
 <script setup>
 import {Link} from '@inertiajs/vue3';
 import FileUpload from "@/Components/FileUpload.vue";
 import Header from "@/Components/Frontend/Header.vue";
+import Footer from "@/Components/Frontend/Footer.vue";
 
 defineProps(
     {

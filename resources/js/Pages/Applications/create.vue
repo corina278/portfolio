@@ -2,8 +2,8 @@
 <template>
     <Head title="New Application"/>
     <Header/>
-        <div class="py-12">
-            <div class="max-w-md mx-auto sm:px-6 lg:px-8 bg-white">
+        <div style="padding: 150px" class="py-12 bg-amber-50 ">
+            <div class="max-w-md mx-auto sm:px-6 lg:p-8 bg-light-primary rounded-xl">
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="p-6 text-gray-900">
                         <form class="p-4" @submit.prevent="submit">
@@ -11,7 +11,7 @@
                                 <InputLabel for="skill" value="Skill" />
                                 <Multiselect
                                     id="multiselect"
-                                    class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md"
+                                    class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm mt-1 block w-full"
                                     :options="options"
                                     v-model="form.skills"
                                     :value="form.skills"
@@ -57,30 +57,20 @@
                                 <file-upload
                                     id="cover_letter"
                                     type="file"
-                                    class="mt-1 block w-full"
+                                    class="mt-1 block w-full py-1"
                                     @input="form.cover_letter = $event.target.files[0]"
 
                                 />
-                                <!--                                    @input="form.image = $event.target.files[0]"-->
 
                                 <InputError class="mt-2" :message="form.errors.cover_letter" />
                             </div>
                             <div>
-<!--                                <InputLabel for="project_url" value="URL" />-->
+                                <InputLabel for="project_url" value="Project Name" />
 
-                                <select name="project" id="project" v-model="form.project_id">
+                                <select name="project" id="project" v-model="form.project_id" class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm mt-1 block w-full">
                                     <option v-for="project in projects"
                                             :value="project.id">{{ project.name }}</option>
                                 </select>
-<!--                                <TextInput-->
-<!--                                    id="project_url"-->
-<!--                                    type="text"-->
-<!--                                    class="mt-1 block w-full"-->
-<!--                                    v-model="form.project_url"-->
-<!--                                    autocomplete="projecturl"-->
-<!--                                />-->
-
-<!--                                <InputError class="mt-2" :message="form.errors.project_url" />-->
                             </div>
 
                             <div class="flex items-center justify-end mt-4">
@@ -94,6 +84,7 @@
                 </div>
             </div>
         </div>
+    <Footer/>
 </template>
 
 <script setup>
@@ -106,6 +97,7 @@ import TextInput from '@/Components/TextInput.vue';
 import {Head, Link, router, useForm} from '@inertiajs/vue3';
 import {computed, onMounted} from "vue";
 import FileUpload from "@/Components/FileUpload.vue";
+import Footer from "@/Components/Frontend/Footer.vue";
 
 const props = defineProps({
     skills: Array,
@@ -131,51 +123,5 @@ const options = computed(() =>
     })
 )
 </script>
-
-<!--<script>-->
-<!--import {router} from "@inertiajs/vue3";-->
-<!--import Multiselect from '@vueform/multiselect';-->
-<!--import {useForm} from "@inertiajs/vue3";-->
-<!--export default {-->
-<!--    components: {-->
-<!--        Multiselect,-->
-<!--    },-->
-
-<!--    mounted() {-->
-<!--        this.options = this.skills.map(item => {-->
-<!--            return item.name-->
-<!--        });-->
-<!--    },-->
-<!--    data() {-->
-<!--        return {-->
-<!--            options: [],-->
-<!--            form: {-->
-<!--                name: '',-->
-<!--                image: null,-->
-<!--                skills: [],-->
-<!--                project_url: "",-->
-<!--                errors: [],-->
-<!--            }-->
-<!--        }-->
-<!--    },-->
-<!--    methods: {-->
-<!--        // submit() {-->
-<!--        //     console.log(route('projects.store'));-->
-<!--        //     router.post(route('projects.store'),-->
-<!--        //         this.form,-->
-<!--        //         {-->
-<!--        //             headers: {-->
-<!--        //                 'Content-Type': 'multipart/form-data'-->
-<!--        //             }-->
-<!--        //         });-->
-<!--        // },-->
-<!--        test(event) {-->
-<!--            console.log(event.target.files[0]);-->
-<!--            this.form.image = event.target.files[0];-->
-<!--            console.log('form-image', this.form.image);-->
-<!--        }-->
-<!--    }-->
-<!--}-->
-<!--</script>-->
 
 <style src="@vueform/multiselect/themes/default.css"></style>

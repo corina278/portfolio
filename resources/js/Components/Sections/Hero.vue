@@ -15,7 +15,7 @@
                         Good luck in your career!
                     </p>
                     <a :href="route('login')"
-                        class="btn btn-md bg-accent hover:bg-light-secondary md:btn-lg transition-all hover:text-light-tail-500">
+                        class="btn btn-md bg-accent rounded-xl hover:bg-light-secondary md:btn-lg transition-all hover:text-light-tail-500">
                             Let's get started
                     </a>
                 </div>

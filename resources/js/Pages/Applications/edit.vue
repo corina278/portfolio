@@ -1,9 +1,8 @@
-
 <template>
     <Head title="Edit Application"/>
     <Header/>
-        <div class="py-12">
-            <div class="max-w-md mx-auto sm:px-6 lg:px-8 bg-white">
+        <div style="padding: 150px" class="py-12 bg-amber-50 ">
+            <div class="max-w-md mx-auto sm:px-6 lg:p-8 bg-light-primary rounded-xl">
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="p-6 text-gray-900">
                         <form class="p-4" @submit.prevent="submit">
@@ -90,6 +89,7 @@
                 </div>
             </div>
         </div>
+    <Footer/>
 </template>
 
 <script setup>
@@ -102,6 +102,7 @@ import {Head, Link, router, useForm} from '@inertiajs/vue3';
 import {computed, onMounted} from "vue";
 import FileUpload from "@/Components/FileUpload.vue";
 import Header from "@/Components/Frontend/Header.vue";
+import Footer from "@/Components/Frontend/Footer.vue";
 
 
 const props = defineProps({

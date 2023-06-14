@@ -1,7 +1,6 @@
 <template>
     <Head title="Skills Report"/>
     <Header :hide-sections="true"/>
-<!--    <section id="skillsReport" class="">-->
         <div class="container mx-auto h-full flex items-center bg-light-primary dark:bg-dark-primary py-32 lg:py-0 justify-center">
             <div class="table-title position-absolute flex-col md:flex-row items-center h-full pt-8 ">
                 <h1 style="margin-top: 100px" class="text-xl leading-[32px] md:text-2xl md:leading-[1.2] font-bold md:traking-[-2px]">

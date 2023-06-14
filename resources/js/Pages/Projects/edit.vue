@@ -1,17 +1,16 @@
 <template>
     <Head title="New Project"/>
     <Header/>
-
-        <div class="py-12">
-            <div class="max-w-md mx-auto sm:px-6 lg:px-8 bg-white">
-                <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+    <div style="padding: 150px" class="py-12 bg-amber-50 ">
+        <div class="max-w-md mx-auto sm:px-6 lg:p-8 bg-light-primary rounded-xl">
+            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="p-6 text-gray-900">
                         <form class="p-4" @submit.prevent="submit">
                             <div>
                                 <InputLabel for="skill" value="Skill" />
                                 <Multiselect
                                     id="multiselect"
-                                    class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md"
+                                    class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm mt-1 block w-full"
                                     :options="options"
                                     v-model="form.skills"
                                     :value="form.skills"
@@ -74,6 +73,7 @@
                 </div>
             </div>
         </div>
+    <Footer/>
 </template>
 
 <script setup>
@@ -86,6 +86,7 @@ import {Head, Link, useForm} from '@inertiajs/vue3';
 import {router} from "@inertiajs/vue3";
 import Multiselect from '@vueform/multiselect';
 import {computed} from "vue";
+import Footer from "@/Components/Frontend/Footer.vue";
 
 const props = defineProps({
     skills: Array,

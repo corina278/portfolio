@@ -44,8 +44,7 @@ const submit = () => {
       <div class="flex flex-col items-center text-center">
         <h2 class="section-title">Contact Me</h2>
         <p class="subtitle">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga veniam
-          labore nisium illum cupiditate reiciendis a numquam
+          Feel free to contact me in regards to any issues or concerns.
         </p>
       </div>
       <div class="flex flex-col lg:flex-row lg:gap-x-8">
@@ -186,7 +185,7 @@ const submit = () => {
             form.errors.message
           }}</span>
 
-          <button class="btn btn-lg bg-accent hover:bg-secondary text-white">
+          <button class="btn btn-lg rounded-xl bg-accent hover:bg-secondary text-white">
             Send message
           </button>
         </form>

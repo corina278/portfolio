@@ -19,7 +19,11 @@ const form = useForm({
 const submit = () => {
     let queryString = window.location.search;
     let urlParams = new URLSearchParams(queryString);
-    form.token = urlParams.has('token') ? urlParams.get('token') : null;
+    if (urlParams) {
+        form.token = urlParams.has('token') ? urlParams.get('token') : null;
+    } else {
+        form.token = null;
+    }
     form.post(route('register'), {
         onFinish: () => form.reset('password', 'password_confirmation'),
     });
@@ -27,6 +31,8 @@ const submit = () => {
 </script>
 
 <script>
+// import {runInContext as urlParams} from "lodash";
+
 export default {
     data() {
         return {
@@ -34,19 +40,10 @@ export default {
         }
     },
     mounted() {
-        // let queryString = window.location.search;
-        // let urlParams = new URLSearchParams(queryString);
-        // let token = '$2a$10$La/BCYuj3SE6Z0RPzYbNTORAyxjXyQIdLxFkADpfMG4HlEIs2Idqm'
-        // // console.log('window', queryString);
-        // // console.log('urlParams', urlParams.has('token'), urlParams.get('token'));
-        // console.log('token', this.token);
-        // console.log('urlToken', urlParams.get('token'));
-        // console.log(urlParams.has('token') && urlParams.get('token') === this.token);
         console.log(this.isRecruiter)
     },
     computed: {
         isRecruiter() {
-
             return (urlParams.has('token') && urlParams.get('token') === this.token);
         }
     }
@@ -55,7 +52,7 @@ export default {
 </script>
 
 <template>
-    <GuestLayout>
+    <GuestLayout class="font-medium text-sm text-green-600 bg-light-primary">
         <Head title="Register" />
 
         <form @submit.prevent="submit">
@@ -123,12 +120,12 @@ export default {
             <div class="flex items-center justify-end mt-4">
                 <Link
                     :href="route('login')"
-                    class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                    class=" mr-5 underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                 >
                     Already registered?
                 </Link>
 
-                <PrimaryButton class="ml-4" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
+                <PrimaryButton class="text-gray-900 bg-gradient-to-r from-red-200 via-red-300 to-yellow-200 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-red-100 dark:focus:ring-red-400 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
                     Register
                 </PrimaryButton>
             </div>

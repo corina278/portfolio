@@ -1,9 +1,8 @@
 <template>
     <Head title="Edit Skill"/>
     <Header/>
-
-        <div class="py-12">
-            <div class="max-w-md mx-auto sm:px-6 lg:px-8 bg-white">
+        <div style="padding: 150px" class="py-12 bg-amber-50 ">
+            <div class="max-w-md mx-auto sm:px-6 lg:p-8 bg-light-primary rounded-xl">
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="p-6 text-gray-900">
                         <form class="p-4" @submit.prevent="submit">
@@ -46,6 +45,7 @@
                 </div>
             </div>
         </div>
+    <Footer/>
 </template>
 
 <script setup>
@@ -56,6 +56,7 @@ import PrimaryButton from '@/Components/PrimaryButton.vue';
 import TextInput from '@/Components/TextInput.vue';
 import {Head, Link, useForm} from '@inertiajs/vue3';
 import { router } from '@inertiajs/vue3'
+import Footer from "@/Components/Frontend/Footer.vue";
 
 const props = defineProps({
     skill: Object,

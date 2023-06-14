@@ -1,20 +1,20 @@
 <template>
     <Head title="Skills Index"/>
     <Header :hide-sections="true"/>
-        <div class="py-12">
-            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                    <div class="p-6 text-gray-900">
-                        <div class="flex justify-end m-2 p-2">
+        <div class="py-12 bg-amber-50">
+            <div  style="padding-top: 70px" class="max-w-7xl mx-auto sm:px-6 lg:p-8 bg-light-primary rounded-xl">
+                <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg bg-light-secondary">
+                    <div class="p-6 text-gray-900 bg-white">
+                        <div class="flex justify-end m-2 p-2 ">
                             <Link :href="route('skills.create')"
                                   class="px-4 py-2 bg-indigo-500 hover:bg-indigo-700 text-white rounded-md"> New Skill
 <!--                            <-merge si "/skills/create">-->
                             </Link>
                         </div>
 
-                        <div class="relative overflow-x-auto">
-                            <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-                                <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                        <div class="relative overflow-x-auto ">
+                            <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400 bg-white">
+                                <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400 bg-fuchsia-100">
                                 <tr>
                                     <th scope="col" class="px-6 py-3">
                                         ID
