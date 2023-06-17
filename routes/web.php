@@ -30,7 +30,6 @@ Route::get('/get-token-whatever', [TokenController::class, 'getToken']);
 
 Route::get('/', [\App\Http\Controllers\WelcomeController::class, 'welcome'])->name('welcome');
 Route::post('/contact', [\App\Http\Controllers\ContactController::class, 'send'])->name('contact-send');
-//Route::get('/dashboard', [\App\Http\Controllers\WelcomeController::class, 'welcome'])->name('welcome');
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -39,7 +38,6 @@ Route::middleware('auth')->group(function () {
     Route::resource('/projects',\App\Http\Controllers\ProjectController::class);
     Route::get('/get-projects',[\App\Http\Controllers\ProjectController::class, 'getProjects']);
     Route::resource('/applications',\App\Http\Controllers\ApplicationsController::class);
-//    Route::resource('/reports',\App\Http\Controllers\ReportsController::class);
     Route::get('/skills-report', [\App\Http\Controllers\ReportsController::class, 'skillsReport'])->name('Reports.SkillsReport');
     Route::get('/reports/get-skills', [\App\Http\Controllers\ReportsController::class, 'getSkills']);
     Route::get('/projects-report', [\App\Http\Controllers\ReportsController::class, 'projectReport'])->name('Reports.ProjectsReport');
@@ -48,8 +46,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/reports/get-applications', [\App\Http\Controllers\ReportsController::class, 'getApplications']);
     Route::get('/applications-jobs',[\App\Http\Controllers\ApplicationsController::class, 'applicationsJobs'])->name('applications-jobs');
     Route::get('/download',[\App\Http\Controllers\StorageController::class, 'download']);
-
-//    Route::get('/applications', [\App\Http\Controllers\ApplicationsController::class, 'applications'])->name('applications.index');
 
     Route::get('/upload-file', [FileUpload::class, 'createForm']);
     Route::post('/upload-file', [FileUpload::class, 'fileUpload'])->name('fileUpload');

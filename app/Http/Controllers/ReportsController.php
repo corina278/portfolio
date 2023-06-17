@@ -20,7 +20,7 @@ class ReportsController extends Controller
     public function getSkills(Request $request) {
 
         $start = date('Y-m-d', strtotime("+1 months", strtotime($request->get('startDate'))));
-        $end = date('Y-m-d', strtotime("+1 months", strtotime($request->get('endDate'))));
+        $end = date('Y-m-d', strtotime("+1 months +1 days", strtotime($request->get('endDate'))));
         $dates = [$start, $end];
         $skills = Skill::whereBetween('updated_at', $dates)->get();
 
@@ -33,7 +33,7 @@ class ReportsController extends Controller
 
     public function getProjects(Request $request){
         $start = date('Y-m-d', strtotime("+1 months", strtotime($request->get('startDate'))));
-        $end = date('Y-m-d', strtotime("+1 months", strtotime($request->get('endDate'))));
+        $end = date('Y-m-d', strtotime("+1 months +1 days", strtotime($request->get('endDate'))));
         $dates = [$start, $end];
 
         $projects = Project::whereBetween('updated_at', $dates)->get();
@@ -48,7 +48,7 @@ class ReportsController extends Controller
 
     public function getApplications(Request $request) {
         $start = date('Y-m-d', strtotime("+1 months", strtotime($request->get('startDate'))));
-        $end = date('Y-m-d', strtotime("+1 months", strtotime($request->get('endDate'))));
+        $end = date('Y-m-d', strtotime("+1 months +1 days", strtotime($request->get('endDate'))));
         $dates = [$start, $end];
 
         $project = $request->has('project') ? $request->get('project') : null;

@@ -31,7 +31,6 @@ const submit = () => {
 </script>
 
 <script>
-// import {runInContext as urlParams} from "lodash";
 
 export default {
     data() {
